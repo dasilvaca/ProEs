@@ -5,14 +5,32 @@
     <title>Signatures</title>
 {% endblock %}
 {% block content %}
-<div class="card border-success mb-3" style="max-width: 18rem; border-radius: 21px; ">
-    <div class="card-header border-success" style="border-radius: 21px 21px 0px 0px;; background-color: #5112d9; overflow: visible ;color: #ffffff; font-family: sans-serif;">Nombre asignatura</div>
-    <div class="card-body text-success">
-        <div class="d-grid gap-2">
-            <button type="button" class="btn btn-dark">Generar top 3 mejores estudiantes</button>
-            <button type="button" class="btn btn-dark">Generar top 3 peores estudiantes</button>    
+<header>
+</header>
+<main>
+    <div class="container-fluid text-center" style="height: 100vh; margin: 0; padding: 3%; background: #ccc7c7">
+        <div class="row" style="height: 100%; border-radius: 20px; background: white">
+            <div class="col col-12 col-md-6 mt-1">
+                <h1>Bienvenido, estas son tus asignaturas</h1>
+                <div class="card border-success mb-3" style="max-width: 18rem; border-radius: 21px; border-color: black;">
+                    <div class="card-header border-success" style="border-radius: 21px 21px 0px 0px;; background-color: #5112d9; overflow: visible ;color: #ffffff; font-family: sans-serif;">
+                        <a href="">Nombre asignatura</a> 
+                        <a href=""><i class="bi bi-three-dots-vertical"></i></a>
+                    </div>
+                    <div class="card-body text-success">
+                        <div class="d-grid gap-2">
+                            <button type="button" class="btn btn-dark">Generar top 3 mejores estudiantes</button>
+                            <button type="button" class="btn btn-dark">Generar top 3 peores estudiantes</button>    
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary btn-circle btn-xl" style="border-radius: 35px; width: 70px; height: 70px;background-color: #5112d9; border-color: #5112d9;">
+                    <h4><i class="bi bi-plus-lg"></i></h4>
+                </button>
+            </div>
         </div>
     </div>
-  </div>
-  <button type="button" class="btn btn-primary btn-circle btn-xl" style="border-radius: 35px; width: 70px; height: 70px; padding: 10px 16px;">+</button>
+</main>
+<footer>
+</footer>
 {% endblock %}
