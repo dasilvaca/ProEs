@@ -1,4 +1,4 @@
-"""djangoProject1 URL Configuration
+"""ProEs URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -17,10 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include, path
 
+from ProEs import views as local_views
+
 urlpatterns = [
     # path('xd/', include('xd.urls')),
     path('admin/', admin.site.urls),
-    # path('', include(('posts.urls', 'posts'), namespace='posts')),
+
     path('users/', include(('users.urls', 'users'), namespace='users')),
+
     path('signatures/', include(('signatures.urls', 'signatures'), namespace='signatures')),
+
+    path('', local_views.Home),
+
 ]
