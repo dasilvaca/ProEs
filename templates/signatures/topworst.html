@@ -1,0 +1,104 @@
+{% extends "common/base.html" %}
+{% load static %}
+
+{% block  head_content %}
+    <title>TopWorst</title>
+{% endblock %}
+{% block content %}
+<header class="container">
+    <div class="row">
+        <div class="col-12 col-lg-10 "> 
+            <h1>Top 3 peores estudiantes de la asignatura</h1>
+        </div>
+        <div class="col-12 col-lg-2 "> 
+            <article class="card border-color : white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <img src="/static/common/lili.jpg" width="50" class="border border-secundary border-3 rounded-circle "/>
+                        <div class="ps-3">
+                            <h6 class="m-0 h6">Profe Lili</h6>
+                            <a href="/" class="m-0 h6">Cerrar sesion</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</header>
+<main class="container">
+    <div class="row" align="center">
+        <div class="col-12 col-lg-4 "> 
+            <div class="row">
+                <div class="col-12 col-lg-12 bg-succes"> 
+                    <h1>TOP 1</h1>
+                </div>
+                <div class="col-12 col-lg-12"> 
+                    <img
+                    src="/static/common/top3ww.jpg"
+                    style="height: 100%"
+                    class="img-fluid"
+                    alt="Responsive image"
+                />
+                </div>
+                <div class="col-12 col-lg-12"> 
+                   <h2>Estudiante 1</h2>
+                </div>
+                <div class="col-12 col-lg-12"> 
+                    <h3>Nota</h3>
+                </div>
+            </div>
+        </div> 
+        <div class="col-12 col-lg-4 "> 
+            <div class="row">
+                <div class="col-12 col-lg-12 "> 
+                    <h1>TOP 2</h1>
+                </div>
+                <div class="col-12 col-lg-12 "> 
+                    <img
+                    src="/static/common/top2ww.jpg"
+                    style="height: 100%"
+                    class="img-fluid"
+                    alt="Responsive image"
+                />
+                </div>
+                <div class="col-12 col-lg-12"> 
+                    <h2>Estudiante 2</h2>
+                 </div>
+                 <div class="col-12 col-lg-12"> 
+                     <h3>Nota</h3>
+                 </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 "> 
+            <div class="row">
+                <div class="col-12 col-lg-12 "> 
+                    <h1>TOP 3</h1>
+                </div>
+                <div class="col-12 col-lg-12 "> 
+                    <img
+                    src="/static/common/top1ww.jpg"
+                    style="height: 100%"
+                    class="img-fluid"
+                    alt="Responsive image"
+                />
+                </div>
+                <div class="col-12 col-lg-12"> 
+                    <h2>Estudiante 3</h2>
+                 </div>
+                 <div class="col-12 col-lg-12"> 
+                     <h3>Nota</h3>
+                 </div>
+            </div>
+        </div>
+      </div>
+</main>
+<footer class="container">
+    <div class="row">
+        <div class="col-12 col-lg-1">
+            <a href="/signatures" >
+                <h2><i class="bi bi-arrow-left-circle"></i></h2>
+            </a>
+        </div>
+    </div>
+</footer>
+{% endblock %}

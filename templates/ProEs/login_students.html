@@ -1,0 +1,20 @@
+{% extends "ProEs/home_base.html" %}
+{% load static %}
+
+{% block home_content %}
+    <div class="col-4"></div>
+    <div class="col-4">
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control" id="Input_Studend_ID" placeholder="Digita tu numero de identificación">
+            </div>
+{#            Cambiar el tipo de botton a submit cuando sea requerido#}
+            <a href = "/notes">
+                <div class="d-grid">
+                    <button class="btn btn-primary mt-4 " type="button">Consultar mis notas</button>
+                </div>
+            </a>
+        </form>
+    </div>
+    <div class="col-4"></div>
+{% endblock %}
