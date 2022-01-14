@@ -13,3 +13,7 @@ def Login_Students(request):
 def Recovery_Password(request):
     return render(request, 'ProEs/recovery_password.html')
 
+def Notes(request):
+    return render(request, 'ProEs/notes.html')
+
+
