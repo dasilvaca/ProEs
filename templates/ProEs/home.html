@@ -7,15 +7,24 @@
 {% block content %}
     <div class="container-fluid" style="margin: 0px ; padding: 0px; height: 100vh
 ; background: radial-gradient(90% 78.2% at 50% 3.3000000000000003%, #c52eea 0%, hsl(247, 100%, 19%) 100%);">
-        <div class="row" style="margin: 0px ; padding: 0px; height: 60%">
-            <div class="col-4"></div>
-            <div class="col-4" >
-                <img src="{% static "common/logos/1.png"%}" class="img-fluid" alt="..." class = "img-fluid d-block my-auto">
+        <div class="row" style="margin: 0px ; padding: 0px; height: 5%"></div>
+        <div class="row text-center" style="margin: 0px ; padding: 0px; height: 65%">
+{#            <div class="col-4"></div>#}
+            <div class="col-12" >
+                <img src="{% static "common/logos/1.png"%}" alt="..." width="350" class = "img-fluid  mx-auto"
+                     style="vertical-align: middle">
             </div>
-            <div class="col-4"></div>
+{#            <div class="col-4"></div>#}
         </div>
-        <div class="row" style="margin: 0px ; padding: 0px; height: 60%">
-
+        <div class="row text-center" style="margin: 0px ; padding: 0px; height: 30%">
+            <div class="column-12">
+                <button type="button" class="btn btn-light btn-lg" style="font-size: xx-large; color: #6600FF; font-family: 'Helvetica'; margin: 4px">
+                    <p1><b>Profesores</b></p1>
+                </button>
+                <button type="button" class="btn btn-light btn-lg" style="font-size: xx-large; color: #6600FF; font-family: Helvetica; margin: 4px">
+                    <p1><b>Estudiantes</b></p1>
+                </button>
+            </div>
         </div>
     </div>
 {% endblock %}
