@@ -29,4 +29,6 @@ urlpatterns = [
 
     path('', local_views.Home),
 
+    path('students', local_views.Login_Students),
+
 ]
