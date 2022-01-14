@@ -5,10 +5,35 @@
     <title>NewSignature</title>
 {% endblock %}
 {% block content %}
-<header>
+<header class="container">
+    <div class="row">
+        <div class="col-12 col-lg-10 "> 
+            <h1>Agregar una nueva asignatura</h1>
+        </div>
+        <div class="col-12 col-lg-2 "> 
+            <article class="card ; border-color: none;">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <img src="/static/common/lili.jpg" width="50" class="border border-secundary border-3 rounded-circle "/>
+                        <div class="ps-3">
+                            <h6 class="m-0 h6">Profe Lili</h6>
+                            <a href="/" class="m-0 h6">Cerrar sesion</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
 </header>
 <main>
 </main>
-<footer>
+<footer class="container">
+    <div class="row">
+        <div class="col-12 col-lg-1">
+            <a href="/signatures" >
+                <h2><i class="bi bi-arrow-left-circle"></i></h2>
+            </a>
+        </div>
+    </div>
 </footer>
 {% endblock %}
