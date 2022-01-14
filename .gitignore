@@ -2,3 +2,6 @@ __pycache__/
 venv/
 .idea/
 .vscode/
+/ProEs/Scripts
+/ProEs/pyvenv.cfg
+/ProEs/Lib
