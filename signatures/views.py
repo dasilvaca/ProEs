@@ -10,3 +10,6 @@ class TopWorst(TemplateView):
 
 class TopBest(TemplateView):
     template_name = "signatures/topbest.html" #"about.html"
+
+class NewSignature(TemplateView):
+    template_name = "signatures/newsignature.html" #"about.html"
