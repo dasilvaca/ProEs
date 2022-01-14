@@ -2,11 +2,11 @@ from django.urls import path
 
 # from . import views
 
-from signatures import views
+from courses import views
 
 urlpatterns = [
-    path("", views.Signatures.as_view(), name="signatures"),
+    path("", views.Courses.as_view(), name="courses"),
     path("topworst", views.TopWorst.as_view(), name="topworst"),
     path("topbest", views.TopBest.as_view(), name="topbest"),
-    path("newsignature", views.NewSignature.as_view(), name="newsignature"),
+    path("newcourse", views.NewCourse.as_view(), name="newcourse"),
 ]
