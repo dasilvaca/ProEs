@@ -10,3 +10,6 @@ def Home(request):
 def Login_Students(request):
     return render(request, 'ProEs/login_students.html')
 
+def Recovery_Password(request):
+    return render(request, 'ProEs/recovery_password.html')
+

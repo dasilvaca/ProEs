@@ -28,7 +28,7 @@ urlpatterns = [
     path('signatures/', include(('signatures.urls', 'signatures'), namespace='signatures')),
 
     path('', local_views.Home),
-
     path('students', local_views.Login_Students),
+    path('recovery', local_views.Recovery_Password),
 
 ]
