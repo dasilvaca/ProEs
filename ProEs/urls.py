@@ -25,7 +25,7 @@ urlpatterns = [
 
     path('users/', include(('users.urls', 'users'), namespace='users')),
 
-    path('signatures/', include(('signatures.urls', 'signatures'), namespace='signatures')),
+    path('courses/', include(('courses.urls', 'courses'), namespace='courses')),
 
     path('', local_views.Home),
     path('students', local_views.Login_Students),
