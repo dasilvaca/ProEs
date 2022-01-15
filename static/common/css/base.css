@@ -12,10 +12,13 @@
     border-end-end-radius: 20px;
 }
 
-.go-back-chevron-button {
-    position: absolute;
-    padding: 0;
-    margin: 0;
+
+
+.form-title{
+    top: 30%;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
 }
 
 #users-go-back {
@@ -30,6 +33,5 @@
 #left-chevron-container {
     position: relative;
     width: 100%;
-    align-items: start;
     margin: 0 0 0 0;
 }
