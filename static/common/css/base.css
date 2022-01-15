@@ -14,11 +14,12 @@
 
 
 
-.form-title{
-    top: 30%;
+#form-title{
     position: relative;
+    top: 30%;
+    right: 0;
+    left: 0;
     font-family: 'Inter', sans-serif;
-    text-align: center;
 }
 
 #users-go-back {
@@ -34,4 +35,7 @@
     position: relative;
     width: 100%;
     margin: 0 0 0 0;
+    text-align: center;
+    align-content: center;
+    align-items: center;
 }
