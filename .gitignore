@@ -7,3 +7,4 @@ venv/
 /ProEs/Lib
 package.json
 package-lock.json
+node_modules
