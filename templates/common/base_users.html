@@ -14,15 +14,13 @@
             <i class="bi bi-chevron-left go-back-chevron-button" id="users-go-back"></i>
         </div>
 
-        <h1 id="form-title">Registro de profes</h1>
-
-
+        <h1  id="form-title">{% block form_title %} {% endblock %}</h1>
 
         {% block base_users %}{% endblock %}
     </div>
     <div class="col-6 d-none d-md-block fondo-colores-redondo-a-la-derecha" style="height: 100%;">
         <div class="row  justify-content-md-center" style="align-items: center; height: 100%; text-align: center">
-            <img src="{% static "common/logos/2.1.png" %}"
+            <img alt="ProEs Logo" src="{% static "common/logos/2.1.png" %}"
                  style=" width: 100%; max-width: 446px; max-height: 188px; height: 100%">
         </div>
 

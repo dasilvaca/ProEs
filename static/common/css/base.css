@@ -16,11 +16,13 @@
 
 #form-title{
     position: relative;
-    top: 30%;
+    top: 25%;
     right: 0;
     left: 0;
     font-family: 'Inter', sans-serif;
 }
+
+
 
 #users-go-back {
     position: absolute;
