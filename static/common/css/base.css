@@ -1,1 +1,10 @@
-hola mundo
+.fondo-colores{
+    background: radial-gradient(90% 78.2% at 23.599999999999998% 14.2%, #c52eea 0%, hsl(247, 100%, 19%) 100%) !important;
+}
+
+.fondo-colores-redondo-a-la-derecha{
+    background: radial-gradient(90% 78.2% at 23.599999999999998% 14.2%, #c52eea 0%, hsl(247, 100%, 19%) 100%) !important;
+    border-start-end-radius: 20px;
+    border-end-end-radius: 20px;
+
+}
