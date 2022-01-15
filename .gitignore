@@ -5,3 +5,5 @@ venv/
 /ProEs/Scripts
 /ProEs/pyvenv.cfg
 /ProEs/Lib
+package.json
+package-lock.json

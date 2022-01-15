@@ -4,7 +4,21 @@
 {% block  head_content %}
     <title>ProEs | Login</title>
 {% endblock %}
+
+{% block form_title %}Ingreso de profes{% endblock %}
+
 {% block base_users %}
+    <form>
+        <div class="form-group text-start" style="">
+
+             <input type="text" class="form-control form-users" id="input_dni" aria-describedby="dni_help"
+                    placeholder="Documento de Identidad" pattern="^[\d]+$" onkeypress='return event.charCode >= 48 && event.charCode <= 57' style="margin-top: 50px">
+
+            <input type="password" class="form-control form-users" id="teacher_password" aria-describedby="dni_help"
+                    placeholder="Contraseña" name="xd">
+            <input type="button" class="btn-primary botones" value="Ingresar">
+        </div>
+    </form>
 
     {#    <form method="POST" action="{% url "users:loginView" %}">#}
 
@@ -68,4 +82,27 @@
 {#        </div>#}
 {#    </div>#}
 {% endblock %}
+
+{#<script>#}
+{#    function setInputFilter(textbox, inputFilter) {#}
+{#  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {#}
+{#    textbox.addEventListener(event, function() {#}
+{#      if (inputFilter(this.value)) {#}
+{#        this.oldValue = this.value;#}
+{#        this.oldSelectionStart = this.selectionStart;#}
+{#        this.oldSelectionEnd = this.selectionEnd;#}
+{#      } else if (this.hasOwnProperty("oldValue")) {#}
+{#        this.value = this.oldValue;#}
+{#        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);#}
+{#      } else {#}
+{#        this.value = "";#}
+{#      }#}
+{#    });#}
+{#  });#}
+{#}#}
+{##}
+{#setInputFilter(document.getElementById("input_dni"), ){#}
+{##}
+{#    }#}
+{#</script>#}
 

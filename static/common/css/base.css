@@ -1,3 +1,8 @@
+div {
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
 .row {
     margin: 0 0 0 0;
 }
@@ -12,16 +17,49 @@
     border-end-end-radius: 20px;
 }
 
+.botones {
+    width: 100%;
+    border-radius: 8px;
+    background: #5C00FA;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: large;
+    padding: 10px;
 
+}
 
-#form-title{
+.form-users {
+    background: #F5F5F5;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: medium;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.form-users:focus {
+    background: #F5F5F5 !important;
+}
+
+#input_dni input {
+
+}
+
+#teacher_password {
+
+}
+
+#form-title {
     position: relative;
     top: 25%;
     right: 0;
     left: 0;
     font-family: 'Inter', sans-serif;
+    font-weight: bolder;
 }
-
 
 
 #users-go-back {
@@ -40,4 +78,17 @@
     text-align: center;
     align-content: center;
     align-items: center;
+}
+
+#form-content {
+    width: 75%;
+    position: absolute;
+    left: 10%;
+    top: 25vh;
+    font-size: xx-large;
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+
 }
