@@ -1,0 +1,30 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#</body>#}
+{#</html>#}
+{% extends "common/white_base.html" %}
+{% load static %}
+
+
+{% block head_content %}
+    <title>Users</title>
+{% endblock %}
+
+{% block white_base%}
+    <div class="col-6">
+        {% block base_users %}{% endblock %}
+    </div>
+    <div class="col-6 fondo-colores-redondo-a-la-derecha">
+    <div class="row justify-content-md-center" style="align-items: center; height: 100%; text-align: center">
+        <img src="{% static "common/logos/2.1.png"%}" style="position: relative; width: 75%;">
+    </div>
+
+    </div>
+
+{% endblock %}

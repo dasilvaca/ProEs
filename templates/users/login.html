@@ -1,10 +1,10 @@
-{% extends "common/base.html" %}
+{% extends "common/base_users.html" %}
 {% load static %}
 
 {% block  head_content %}
     <title>Login</title>
 {% endblock %}
-{% block content %}
+{% block base_users %}
 
     {#    <form method="POST" action="{% url "users:loginView" %}">#}
 
@@ -23,49 +23,49 @@
     {#    </form>#}
     {#    <p class="mt-4">Don't have an account yet? <a href="{% url "users:signup" %}">Sign up here.</a></p>#}
     {#    <p class="mt-4">Don't have an account yet? <a href="">Sign up here.</a></p>#}
-    <div class="container-fluid text-center" style="height: 100vh; margin: 0; padding: 3%; background: #ccc7c7">
-        <div class="row" style="height: 100%; border-radius: 20px; background: white">
-            <div class="col col-12 col-md-6 mt-1">
-                <img
-                        src="/static/common/logos/1.png"
-                        style="height: 30%"
-                        class="img-fluid"
-                        alt="Responsive image"
-                />
-                <h2 class="default-title h1 pt-3">Iniciar Sesión</h2>
-                <form  class="p-3 col-4">
-                    <div class="form-group">
-                        <input
-                                class="form-control"
-                                placeholder="Correo Electrónico"
-                                type="email"
-                                v-model="user.username"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <input
-                                class="form-control"
-                                type="password"
-                                v-model="user.password"
-                                placeholder="Contraseña"
-                        />
-                    </div>
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
-                </form>
-                <router-link to="recuperarContrasena" class="link-primary">
-                    Olvidaste tu contraseña?
-                </router-link>
-            </div>
-            <div class="col-4 col-md-6 d-none d-md-block" style="background: radial-gradient(90% 78.2% at 23.599999999999998% 14.2%, #c52eea 0%, hsl(247, 100%, 19%) 100%); padding: 0; margin: 0; border-bottom-right-radius: 20px; border-top-right-radius: 20px">
-
-                            <img
-                                    src="{% static "common/logos/2.png"%}"
-                                    style="padding-top: 15vh"
-                                    class="img-fluid"
-                                    alt="Responsive image"
-                            />
-            </div>
-        </div>
-    </div>
+{#    <div class="container-fluid text-center" style="height: 100vh; margin: 0; padding: 3%; background: #ccc7c7">#}
+{#        <div class="row" style="height: 100%; border-radius: 20px; background: white">#}
+{#            <div class="col col-12 col-md-6 mt-1">#}
+{#                <img#}
+{#                        src="/static/common/logos/1.png"#}
+{#                        style="height: 30%"#}
+{#                        class="img-fluid"#}
+{#                        alt="Responsive image"#}
+{#                />#}
+{#                <h2 class="default-title h1 pt-3">Iniciar Sesión</h2>#}
+{#                <form  class="p-3 col-4">#}
+{#                    <div class="form-group">#}
+{#                        <input#}
+{#                                class="form-control"#}
+{#                                placeholder="Correo Electrónico"#}
+{#                                type="email"#}
+{#                                v-model="user.username"#}
+{#                        />#}
+{#                    </div>#}
+{#                    <div class="form-group">#}
+{#                        <input#}
+{#                                class="form-control"#}
+{#                                type="password"#}
+{#                                v-model="user.password"#}
+{#                                placeholder="Contraseña"#}
+{#                        />#}
+{#                    </div>#}
+{#                    <button type="submit" class="btn btn-primary">Ingresar</button>#}
+{#                </form>#}
+{#                <router-link to="recuperarContrasena" class="link-primary">#}
+{#                    Olvidaste tu contraseña?#}
+{#                </router-link>#}
+{#            </div>#}
+{#            <div class="col-4 col-md-6 d-none d-md-block" style="background: radial-gradient(90% 78.2% at 23.599999999999998% 14.2%, #c52eea 0%, hsl(247, 100%, 19%) 100%); padding: 0; margin: 0; border-bottom-right-radius: 20px; border-top-right-radius: 20px">#}
+{##}
+{#                            <img#}
+{#                                    src="{% static "common/logos/2.1.png"%}"#}
+{#                                    style=""#}
+{#                                    class="img-fluid align-middle"#}
+{#                                    alt="Responsive image"#}
+{#                            />#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 {% endblock %}
 
