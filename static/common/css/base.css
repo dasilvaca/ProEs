@@ -12,14 +12,12 @@
     border-end-end-radius: 20px;
 }
 
-#imagen-derecha-usuarios{
-    height: 100%;
-}
-@media only screen and (max-width: 750px){
-    #imagen-derecha-usuarios {
-        display: none;
-    }
-}
+
+/*@media only screen and (max-width: 750px){*/
+/*    #imagen-derecha-usuarios {*/
+/*        display: none;*/
+/*    }*/
+/*}*/
 
 .go-back-chevron-button{
     position: absolute;
