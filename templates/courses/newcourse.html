@@ -1,40 +1,66 @@
-{% extends "common/base.html" %}
+{% extends "common/white_base.html" %}
 {% load static %}
 
 {% block  head_content %}
-    <title>NewCourse</title>
+    <title>ProEs | New Course</title>
 {% endblock %}
-{% block content %}
-    <header class="container">
-        <div class="row">
-            <div class="col-12 col-lg-10 ">
-                <h1>Agregar una nueva asignatura</h1>
-            </div>
-            <div class="col-12 col-lg-2 ">
-                <article class="card ; border-color: none;">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-center">
-                            <img src="/static/common/lili.jpg" width="50"
-                                 class="border border-secundary border-3 rounded-circle "/>
-                            <div class="ps-3">
-                                <h6 class="m-0 h6">Profe Lili</h6>
-                                <a href="/" class="m-0 h6">Cerrar sesion</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+
+{% block white_base %}
+    <header style="max-height: 100px; margin: 12px">
+        <div style="float: left; clear: both">
+            <h1 id="form-title" style="margin: 18px">Agregar nueva asignatura</h1>
         </div>
+
+        <div style="float: right; border-color: red; border-style: none; margin-right: 10px">
+            <div style="display: inline-block;">
+                <img alt="user_card" class="rounded-circle" src="/static/common/lili.jpg"
+                     style="max-height: 100px; max-width: 100px; width: 100%; float: left; clear: both; display: inline"/>
+                <div style="display: inline-block; max-width: 16em; padding-left: 5px; text-align: center; margin: auto;padding-top: 18px">
+                    <h3 style="font-family: 'Inter', sans-serif;display: block; max-width: 18em; word-wrap: break-word; margin: 0">
+                        Profe Lili</h3>
+                    <a href="a"
+                       style="display: block; float: right; text-align: center; font-family: 'Inter', sans-serif; color: #504E4E">Cerrar
+                        sesión</a>
+                </div>
+            </div>
+
+        </div>
+
+
     </header>
-    <main>
-    </main>
-    <footer class="container">
-        <div class="row">
-            <div class="col-12 col-lg-1">
-                <a href="/courses">
-                    <h2><i class="bi bi-arrow-left-circle"></i></h2>
-                </a>
-            </div>
-        </div>
-    </footer>
+
 {% endblock %}
+{#{% block content %}#}
+{#    <header class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-12 col-lg-10 ">#}
+{#                <h1>Agregar una nueva asignatura</h1>#}
+{#            </div>#}
+{#            <div class="col-12 col-lg-2 ">#}
+{#                <article class="card ; border-color: none;">#}
+{#                    <div class="card-body">#}
+{#                        <div class="d-flex justify-content-center">#}
+{#                            <img src="/static/common/lili.jpg" width="50"#}
+{#                                 class="border border-secundary border-3 rounded-circle "/>#}
+{#                            <div class="ps-3">#}
+{#                                <h6 class="m-0 h6">Profe Lili</h6>#}
+{#                                <a href="/" class="m-0 h6">Cerrar sesion</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </article>#}
+{#            </div>#}
+{#        </div>#}
+{#    </header>#}
+{#    <main>#}
+{#    </main>#}
+{#    <footer class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-12 col-lg-1">#}
+{#                <a href="/courses">#}
+{#                    <h2><i class="bi bi-arrow-left-circle"></i></h2>#}
+{#                </a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </footer>#}
+{#{% endblock %}#}
