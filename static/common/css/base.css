@@ -40,11 +40,15 @@ div {
     font-size: medium;
     margin-top: 10px;
     margin-bottom: 10px;
-
 }
 
 .form-users:focus {
     background: #F5F5F5 !important;
+    color: #5C00FA;
+}
+
+.form-users::placeholder{
+    color: #AAAAAA;
 }
 
 .users-redirect-link {
