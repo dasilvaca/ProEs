@@ -14,10 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, reverse_lazy
 from django.urls import include, path
 
 from ProEs import views as local_views
+
+#Classes for the login and others
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     # path('xd/', include('xd.urls')),
@@ -25,11 +28,15 @@ urlpatterns = [
 
     path('users/', include(('users.urls', 'users'), namespace='users')),
 
-    path('courses/', include(('courses.urls', 'courses'), namespace='courses')),
+    path('courses/', include('courses.urls'), name='courses'),
 
-    path('', local_views.Home),
+    path('', local_views.Home, name='home'),
     path('students', local_views.Login_Students),
     path('recovery', local_views.Recovery_Password),
     path('notes', local_views.Notes),
 
+
+    #Links for login and others
+    path('usuario/', include('apps.usuario2.urls'),name='usuario'),
+    path('login/',LoginView.as_view(template_name='index.html'), name='login'),
 ]
