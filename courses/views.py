@@ -13,3 +13,6 @@ class TopBest(TemplateView):
 
 class NewCourse(TemplateView):
     template_name = "courses/newcourse.html" #"about.html"
+
+class Spreadsheet(TemplateView):
+    template_name = "courses/spreadsheet.html" #"about.html"

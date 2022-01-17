@@ -1,42 +1,112 @@
+{% extends 'common/white_base.html' %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block  head_content %}
+    <title>ProEs | Notas</title>
+{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript - Ejercicio 1376</title>
-</head>
+{% block white_base %}
+<div class="container-flex" style="margin: 0px; padding: 0px">
 
-<body>
-    <h1>JavaScript - Ejercicio 1376</h1>
+    <div class="row text-black" style="height: 12%; margin: 10px; align-items: center; padding: 0px; border-radius: 20px 20px 0px 0px; background: #ffffff, #c52eea 0%, hsl(247, 100%, 19%) 100%);">
+        <div class="col">
+            <h1 class="title">Nombre Asignatura</h1>
+        </div>
+        <!--        <div class="col-8"></div>-->
+        <div class="col text-end">
+            Cédula
+        </div>
+    </div>
 
-    <table id="tblDatos" border="1">
-        <tr>
-            <td>Fila1 Columna1</td>
-            <td>Fila1 Columna2</td>
-        </tr>
-        <tr>
-            <td>Fila2 Columna1</td>
-            <td>Fila2 Columna2</td>
-        </tr>
-    </table>
+    <div class="overflow-auto">
+        <div class="row">
+        <div class="col" style="margin: 10px; width: 80%">
+        <table id="tblDatos" border="1">
+            <tr>
+                <th>
 
-    <br>
+                </th>
+                <th>
+                    Nota 1
+                </th>
+                <th>
+                    Definitiva
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    Nombre de Estudiante
+                </th>
+                <th>
+                    100%
+                </th>
 
-    <input type="button" onclick="insertarFila()" value="Insertar fila">
+            </tr>
+            <tr>
+                <td><div contenteditable><input placeholder="Estudiante"></div></td>
+                <td><div contenteditable><input placeholder="Nota"></div></td>
+                <td><div contenteditable><input placeholder="Definitiva"></div></td>
+            </tr>
 
-    <script>
-        function insertarFila() {
-            let tblDatos = document.getElementById('tblDatos').insertRow(0);
-            let col1 = tblDatos.insertCell(0);
-            let col2 = tblDatos.insertCell(1);
 
-            col1.innerHTML = 'Nueva celda';
-            col2.innerHTML = 'Nueva celda';
-        }
-    </script>
-</body>
+        </table>
 
-</html>
+        <script>
+            function insertarEstudiante() {
+                var table = document.getElementById('tblDatos').insertRow(-1);
+
+                var col1 = table.insertCell(0);
+                col1.innerHTML = '<div contenteditable><input placeholder="Estudiante"></div>';
+
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+
+                for (var i = 0; i < cols-1; i++)
+                {
+                    let col2 = table.insertCell(1);
+                    col2.innerHTML = '<div contenteditable><input placeholder="Nota"></div>';
+                }
+            }
+
+            function insertarNota() {
+                var table = document.getElementById ('tblDatos');
+
+                var rows = table.rows.length;
+
+                var firstRow = table.rows[0];
+                var SecRow = table.rows[1];
+
+                var cell1 = firstRow.insertCell (rows-1);
+                var cell2 = SecRow.insertCell (rows-1);
+
+
+
+                for (var i = 0; i < rows-2; i++)
+                {
+                    cell1.innerHTML = 'Nota x';
+                    cell2.innerHTML = '50%';
+
+                    var LstRow = table.rows[i+2];
+                    var celln = LstRow.insertCell (rows-1);
+
+                    const nota = "Nota" + i;
+
+                    celln.innerHTML = '<div contenteditable><input placeholder=Nota></div>';
+
+                }
+            }
+        </script>
+        </div>
+        <div class="col text-end" style="margin: 10px; width: 100%">
+            <input type="button" class="btn-primary botones" onclick="insertarNota()" value="Nueva Nota" style="margin: 20px">
+        </div>
+    </div>
+
+    </div>
+
+
+
+    <input type="button" class="btn-primary botones" onclick="insertarEstudiante()" value="Nuevo Estudiante" style="margin: 20px">
+
+
+    </div>
+{% endblock %}

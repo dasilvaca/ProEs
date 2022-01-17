@@ -34,6 +34,19 @@ div {
 
 }
 
+.title {
+  width: auto; /* 488px */
+  height: auto; /* 121px */
+  white-space: pre;
+  overflow: visible;
+  font-weight: 700;
+  font-family: "Inter-Bold", "Inter", sans-serif;
+  color: #333;
+  font-size: 55px;
+  letter-spacing: -2px;
+  line-height: 1.1;
+}
+
 .form-users {
     background: #F5F5F5;
     border: none;
