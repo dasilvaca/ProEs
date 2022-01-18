@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+from django.shortcuts import render
 
 from apps.usuario2.forms import RegistroForm
 
@@ -11,3 +12,6 @@ class RegistrarUsuario(CreateView):
     template_name = 'usuario2/registrar.html'
     form_class = RegistroForm
     success_url = reverse_lazy('home')
+
+def testview(request):
+    return render(request, 'base/base2.html')
