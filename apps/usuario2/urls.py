@@ -10,5 +10,5 @@ urlpatterns = [
     path('registrar',RegistrarUsuario.as_view(),name='registrar'),
 
     #for test
-    path('test',login_required(testview),name='testview'),
+    path('test',testview,name='testview'),
 ]
