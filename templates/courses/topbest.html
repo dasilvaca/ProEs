@@ -2,30 +2,30 @@
 {% load static %}
 
 {% block  head_content %}
-    <title>TopBest</title>
+    <title>Proes | TopBest</title>
 {% endblock %}
 {% block white_base %}
-    <header class="container">
-        <div class="row">
-            <div class="col-12 col-lg-10 ">
-                <h1>Top 3 mejores estudiantes de la asignatura</h1>
-            </div>
-            <div class="col-12 col-lg-2 ">
-                <article class="card border-color : white">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-center">
-                            <img src="/static/common/lili.jpg" width="50"
-                                 class="border border-secundary border-3 rounded-circle "/>
-                            <div class="ps-3">
-                                <h6 class="m-0 h6">Profe Lili</h6>
-                                <a href="/" class="m-0 h6">Cerrar sesion</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
+<header style="padding: 20px">
+    <div class="row">
+        <div class="col-12 col-lg-10 d-flex justify-content-start" style="float: left; clear: both; text-align: center">
+            <h1 id="form-title" style="margin: 10px">Top 3 mejores estudiantes de la asignatura</h1>
         </div>
-    </header>
+        <div class="col-12 col-lg-2 ">
+            <div style="float: right; border-color: red; border-style: none; margin-right: 10px">
+                <div style="display: inline-block;">
+                    <img alt="user_card" class="rounded-circle" src="/static/common/lili.jpg"
+                         style="max-height: 100px; max-width: 100px; width: 100%; float: left; clear: both; display: inline"/>
+                    <div style="display: inline-block; max-width: 16em; padding-left: 5px; text-align: center; margin: auto;padding-top: 18px">
+                        <h3 style="font-family: 'Inter', sans-serif;display: block; max-width: 18em; word-wrap: break-word; margin: 0">
+                            Profe Lili</h3>
+                        <a href="/"
+                           style="display: block; float: right; text-align: center; font-family: 'Inter', sans-serif; color: #504E4E">Cerrar
+                            sesión</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</header>
     <main class="container">
         <div class="row" align="center">
             <div class="col-12 col-lg-4 ">
@@ -36,7 +36,7 @@
                     <div class="col-12 col-lg-12">
                         <img
                                 src="/static/common/top1ww.jpg"
-                                style="height: 100%"
+                                style="height: 70%"
                                 class="img-fluid"
                                 alt="Responsive image"
                         />
@@ -57,7 +57,7 @@
                     <div class="col-12 col-lg-12 ">
                         <img
                                 src="/static/common/top2ww.jpg"
-                                style="height: 100%"
+                                style="height: 70%"
                                 class="img-fluid"
                                 alt="Responsive image"
                         />
@@ -78,7 +78,7 @@
                     <div class="col-12 col-lg-12 ">
                         <img
                                 src="/static/common/top3ww.jpg"
-                                style="height: 100%"
+                                style="height: 70%"
                                 class="img-fluid"
                                 alt="Responsive image"
                         />
