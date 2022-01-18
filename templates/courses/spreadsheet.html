@@ -60,25 +60,27 @@
 
                 var cols = document.getElementById('tblDatos').rows[2].cells.length;
 
-                for (var i = 0; i < cols-1; i++)
+                for (var i = 0; i < cols-2; i++)
                 {
-                    let col2 = table.insertCell(1);
-                    col2.innerHTML = '<div contenteditable><input placeholder="Nota"></div>';
+                    let coln = table.insertCell(1);
+                    coln.innerHTML = '<div contenteditable><input placeholder="Nota"></div>';
                 }
+
+                var col3 = table.insertCell(-1);
+                col3.innerHTML = '<div contenteditable><input placeholder="Definitiva"></div>';
             }
 
             function insertarNota() {
                 var table = document.getElementById ('tblDatos');
 
                 var rows = table.rows.length;
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
 
                 var firstRow = table.rows[0];
                 var SecRow = table.rows[1];
 
-                var cell1 = firstRow.insertCell (rows-1);
-                var cell2 = SecRow.insertCell (rows-1);
-
-
+                var cell1 = firstRow.insertCell (cols-1);
+                var cell2 = SecRow.insertCell (cols-1);
 
                 for (var i = 0; i < rows-2; i++)
                 {
@@ -86,7 +88,8 @@
                     cell2.innerHTML = '50%';
 
                     var LstRow = table.rows[i+2];
-                    var celln = LstRow.insertCell (rows-1);
+
+                    var celln = LstRow.insertCell (cols-1);
 
                     const nota = "Nota" + i;
 
