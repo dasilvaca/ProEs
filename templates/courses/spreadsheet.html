@@ -55,6 +55,29 @@
         color: rgb(0, 0, 0);
         }
 
+        section {
+        max-height: 250px;
+        padding: 1rem;
+        overflow-y: auto;
+        scrollbar-color: #d4aa70 #e4e4e4;
+        }
+
+        .section::-webkit-scrollbar {
+        width: 20px;
+        }
+
+        .section::-webkit-scrollbar-track {
+        background-color: #e4e4e4;
+        border-radius: 100px;
+        }
+
+        .section::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        border: 5px solid transparent;
+        background-clip: content-box;
+        background-image: linear-gradient(180deg, #c52eea 0%, hsl(247, 100%, 19%) 100%);
+        }
+
     </style>
 
     <div class="row text-black" style="height: 12%; margin: 10px; align-items: center; padding: 0px; border-radius: 20px 20px 0px 0px;">
@@ -69,7 +92,6 @@
     
     <div>
         <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="edit()"> 
-        <!-- <label style="width:auto; margin: 20px; background: #5C00FA; font-weight: 600; font-size: large; border-radius: 8px; padding: 10px;" class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label> -->
         <label style="width:auto; margin: 20px; border-radius: 8px; padding: 10px;" class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label>
         <button id="addStudents" onclick="openForm()" style="width:auto; margin: 10px; display:none"  type="button" class="btn-primary botones">Estudiantes</button>
     </div>
@@ -87,18 +109,17 @@
             </div>
         </form>
     </div>
-    <div class="overflow-auto">
+    <div style="overflow:scroll;height:610px;margin-right:10px; margin-left: 10px" class="section">
         <div class="row">
         <div class="col" style="margin: 10px; width: 80%">
             
-        <table id="tblDatos" style="border:1px solid #4a0cb6; border-radius: 20px;" class="table table-bordered table-hover align-middle"> <!-- table-bordered -->
+        <table id="tblDatos" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px;" class="table table-bordered table-hover align-middle"> <!-- table-bordered -->
             
             <!-- <tr>
                 <td><div contenteditable><input placeholder="Estudiante"></div></td>
                 <td><div contenteditable><input placeholder="Nota"></div></td>
                 <td><div contenteditable><input placeholder="Definitiva"></div></td>
             </tr> -->
-
 
         </table>
 
@@ -223,13 +244,61 @@
                 }
                 numNotes++
             }
+            function sortTable(n) {
+                      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                      table = document.getElementById("tblDatos");
+
+                      switching = true;
+
+                      dir = "asc";
+
+                      while (switching) {
+
+                        switching = false;
+                        rows = table.rows;
+
+                        for (var i = 2; i < (rows.length); i++) {
+
+                          shouldSwitch = false;
+
+                          x = rows[i].getElementsByTagName('td')[n];
+                          y = rows[i + 1].getElementsByTagName('td')[n];
+
+                          if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                              //if so, mark as a switch and break the loop:
+                              shouldSwitch= true;
+                              break;
+                            }
+                          } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+
+                              shouldSwitch = true;
+                              break;
+                            }
+                          }
+                        }
+                        if (shouldSwitch) {
+
+                          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                          switching = true;
+
+                          switchcount ++;
+                        } else {
+
+                          if (dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                          }
+                        }
+                      }
+                    }
         </script>
         </div>
-        
-    </div>
+           
 
     </div>
     <!-- <input type="button" class="btn-primary botones" onclick="insertarEstudiante()" value="Nuevo Estudiante" style="margin: 20px"> -->
 
-    </div>
+</div>
 {% endblock %}
