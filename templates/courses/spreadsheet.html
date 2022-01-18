@@ -48,7 +48,7 @@
         to {transform: scale(1)}
         }
 
-        input[type=number]{
+        input{
         background-color: #ffffff;
         border: 1px solid rgb(0, 0, 0);
         border-radius: 3px;
@@ -66,7 +66,13 @@
             Cédula
         </div>
     </div>
-    <button onclick="openForm()" style="width:auto; margin: 20px;"  type="button" class="btn-primary botones">Estudiantes</button>
+    
+    <div>
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="edit()"> 
+        <!-- <label style="width:auto; margin: 20px; background: #5C00FA; font-weight: 600; font-size: large; border-radius: 8px; padding: 10px;" class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label> -->
+        <label style="width:auto; margin: 20px; border-radius: 8px; padding: 10px;" class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label>
+        <button id="addStudents" onclick="openForm()" style="width:auto; margin: 10px; display:none"  type="button" class="btn-primary botones">Estudiantes</button>
+    </div>
     <div id="id01" class="modal">   
         <form class="modal-content animate" action="/action_page.php" method="post">
             <div class="imgcontainer d-grid gap-2 d-md-flex justify-content-md-end" style="padding: 0px;">
@@ -97,7 +103,35 @@
         </table>
 
         <script>
+
+            function edit() {
+                var checkBox = document.getElementById("btncheck1");
+                var btnStuden = document.getElementById("addStudents");
+                var btnNote = document.getElementById("newNote");
+                let editnote = document.getElementById("note");
+                if (checkBox.checked == true){
+                    btnStuden.style.display = "inline";
+                    if (btnNote){
+                        btnNote.style.display = "flex";
+                        btnNote.style.margin = "0px";
+                    }
+                    if (editnote){
+                        editnote.disabled = false;
+                    }
+                    
+                } else {
+                    btnStuden.style.display = "none";
+                    if (btnNote){
+                        btnNote.style.display = "none";
+                    }
+                    if (editnote){
+                        editnote.disabled = true;
+                    }
+                }
+            }
+
             var myArray = new Array()
+            var numNotes = 1;
 
             function openForm() {
                 document.getElementById("id01").style.display = "block";
@@ -124,7 +158,7 @@
                         '<tr>'+
                         '<th>'+
                             '<div class="col text-end" style="margin: 0px; width: 70%;">'+
-                                '<input type="button" class="btn-primary botones" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
+                                '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
                             '</div>'+
                         '</th>'+
                         '<th>'+
@@ -175,7 +209,8 @@
 
                 for (var i = 0; i < rows-2; i++)
                 {
-                    cell1.innerHTML = 'Nota x';
+                    const tmp = "Nota " + numNotes;
+                    cell1.innerHTML = tmp;
                     cell2.innerHTML = '50%';
 
                     var LstRow = table.rows[i+2];
@@ -184,9 +219,9 @@
 
                     const nota = "Nota" + i;
 
-                    celln.innerHTML = '<div contenteditable="true"><input type="number" placeholder=Nota style="width: 70px;"></div>';
-
+                    celln.innerHTML = '<input type="text" id="note" placeholder=Nota style="width: 70px;"  maxlength="3">';
                 }
+                numNotes++
             }
         </script>
         </div>
