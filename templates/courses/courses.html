@@ -40,10 +40,7 @@
                                 </button>
                             </div>
                             <div class="col-12 col-lg-3">
-                                <button type="button" class="btn data"
-                                        style="background-color: #5112d9; border-color: #5112d9;">
-                                    <h6 style="color: white;"><i class="bi bi-three-dots-vertical"></i></h6>
-                                </button>
+                                <a data-bs-toggle="modal" data-bs-target="#modificarasignatura" class="btn" style="background-color: #5112d9; border-color: #5112d9; color: white;"><i class="bi bi-three-dots-vertical"></i></a>
                             </div>
                         </div>
                     </div>
@@ -72,10 +69,7 @@
                                 </button>
                             </div>
                             <div class="col-12 col-lg-3">
-                                <button type="button" class="btn"
-                                        style="background-color: #5112d9; border-color: #5112d9;">
-                                    <h6 style="color: white;"><i class="bi bi-three-dots-vertical"></i></h6>
-                                </button>
+                                <a data-bs-toggle="modal" data-bs-target="#modificarasignatura" class="btn" style="background-color: #5112d9; border-color: #5112d9; color: white;"><i class="bi bi-three-dots-vertical"></i></a>
                             </div>
                         </div>
                     </div>
@@ -104,10 +98,7 @@
                                 </button>
                             </div>
                             <div class="col-12 col-lg-3">
-                                <button type="button" class="btn"
-                                        style="background-color: #5112d9; border-color: #5112d9;">
-                                    <h6 style="color: white;"><i class="bi bi-three-dots-vertical"></i></h6>
-                                </button>
+                                <a data-bs-toggle="modal" data-bs-target="#modificarasignatura" class="btn" style="background-color: #5112d9; border-color: #5112d9; color: white;"><i class="bi bi-three-dots-vertical"></i></a>
                             </div>
                         </div>
                     </div>
@@ -136,10 +127,7 @@
                                 </button>
                             </div>
                             <div class="col-12 col-lg-3">
-                                <button type="button" class="btn"
-                                        style="background-color: #5112d9; border-color: #5112d9;">
-                                    <h6 style="color: white;"><i class="bi bi-three-dots-vertical"></i></h6>
-                                </button>
+                                <a data-bs-toggle="modal" data-bs-target="#modificarasignatura" class="btn" style="background-color: #5112d9; border-color: #5112d9; color: white;"><i class="bi bi-three-dots-vertical"></i></a>
                             </div>
                         </div>
                     </div>
@@ -157,7 +145,7 @@
             </div>
         </div>
     </div>
-    <footer class="container" style="padding: 20px">
+    <div class="container" style="padding: 20px">
         <div class="col-12 col-lg-1 d-flex justify-content-end">
             <div class="row justify-content-center align-items-center">
                 <a href="/courses/newcourse">
@@ -168,25 +156,28 @@
                 </a>
             </div>
         </div>
-        <!-- <div class="container">
-            <br>
 
-            <a href="#cambionombre" class="btn" style="background-color: #5112d9; border-color: #5112d9; color: white;"><i class="bi bi-three-dots-vertical"></i></a>
 
-            <div class="modal fade" id="ventana1">
-                <div class="modal-dialog">
+            <div class="modal fade" id="modificarasignatura" tabindex="-1" aria-labelledby="modificarasignatura" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 class="modal-title">hola</h2>
+                      <div class="modal-body">
+                        <form>
+                          <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" style="font-family: 'Inter', sans-serif">Nombre asignatura:</label>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Nombre asignatura">
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <div class="d-grid gap-2 col-6 mx-auto">
+                            <button type="button" class="btn btn-dark">Eliminar</button>
+                            <button type="button" class="btn btn-primary">Guardar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            <div class="modal fade" id="cambionombre">
-
-            </div>
-        </div> -->
-
-        </div>
-
     </footer>
 {% endblock %}
