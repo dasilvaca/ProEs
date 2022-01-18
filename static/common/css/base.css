@@ -93,16 +93,14 @@ div {
     color: #6666FF;
 }
 
-#users-go-back-bottom{
+#users-go-back-bottom {
     float: bottom;
     position: absolute;
     left: 20px;
     bottom: 32px;
     font-size: xx-large;
-    color: #6666FF;
+    color:#6666FF;
 }
-
-
 #left-chevron-container {
     position: relative;
     width: 100%;
