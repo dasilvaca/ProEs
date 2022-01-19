@@ -1,0 +1,303 @@
+{% extends 'common/white_base.html' %}
+{% load static %}
+
+{% block  head_content %}
+    <title>ProEs | Notas</title>
+{% endblock %}
+
+{% block white_base %}
+
+<div class="container-flex" style="margin: 0px; padding: 0px">
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* The Modal (background) */
+        .modal {
+        display: none; /* Hidden by default */
+        justify-content:center;
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        padding-top: 60px;
+        }
+        /* Modal Content/Box */
+        .modal-content {
+        background-color: rgb(255, 255, 255);
+        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #5C00FA;
+        width: 50%;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+        -webkit-animation: animatezoom 0.6s;
+        animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+        from {-webkit-transform: scale(0)}
+        to {-webkit-transform: scale(1)}
+        }
+
+        @keyframes animatezoom {
+        from {transform: scale(0)}
+        to {transform: scale(1)}
+        }
+
+        input{
+        background-color: #ffffff;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 3px;
+        color: rgb(0, 0, 0);
+        }
+
+        section {
+        max-height: 250px;
+        padding: 1rem;
+        overflow-y: auto;
+        scrollbar-color: #d4aa70 #e4e4e4;
+        }
+
+        .section::-webkit-scrollbar {
+        width: 20px;
+        }
+
+        .section::-webkit-scrollbar-track {
+        background-color: #e4e4e4;
+        border-radius: 100px;
+        }
+
+        .section::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        border: 5px solid transparent;
+        background-clip: content-box;
+        background-image: linear-gradient(180deg, #c52eea 0%, hsl(247, 100%, 19%) 100%);
+        }
+
+    </style>
+    <header style="padding: 20px">
+        <div class="row">
+            <div class=<div class="col-12 col-lg-10 d-flex justify-content-start" style="float: left; clear: both; text-align: left">
+                <h1 id="form-title" style="margin: 10px">Nombre Asignatura</h1>
+            </div>
+            <!--        <div class="col-8"></div>-->
+            <div class="col text-end">
+                Cédula
+            </div>
+        </div>
+    </header>
+
+    <div>
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="edit()">
+        <label style="width:auto; margin-left: 40px; border-radius: 8px; padding: 10px; " class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label>
+        <button id="addStudents" onclick="openForm()" style="width:auto; margin: 10px; display:none"  type="button" class="btn-primary botones">Estudiantes</button>
+    </div>
+    <div id="id01" class="modal">
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer d-grid gap-2 d-md-flex justify-content-md-end" style="padding: 0px;">
+                <button onclick="closeForm(); return false" class="btn-close" title="Close Modal" aria-label="Close" style="margin: 15px 15px;"></button>
+            </div>
+
+            <div class="container">
+                <label><h3>Estudiantes</h3></label>
+                <p>Recuerde que los estudiantes deben estar separados por un salto de linea.</p>
+                <textarea class="form-control" placeholder="Ingrese los estudiantes..." rows="20" id='names'></textarea>
+                <button  type="button" class="btn-primary botones" onclick="saveInfo(); return false" style="margin: 10px 0px 15px 0px;">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <div style="overflow:scroll;height:610px;margin-right:10px; margin-left: 10px" class="section">
+        <div class="row">
+            <div class="col" style="margin: 20px; width: 80%">
+
+                <table id="tblDatos" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px;" class="table table-bordered table-hover align-middle"> <!-- table-bordered -->
+
+                    <!-- <tr>
+                        <td><div contenteditable><input placeholder="Estudiante"></div></td>
+                        <td><div contenteditable><input placeholder="Nota"></div></td>
+                        <td><div contenteditable><input placeholder="Definitiva"></div></td>
+                    </tr> -->
+
+                </table>
+
+                <script>
+
+                    function edit() {
+                        var checkBox = document.getElementById("btncheck1");
+                        var btnStuden = document.getElementById("addStudents");
+                        var btnNote = document.getElementById("newNote");
+                        let editnote = document.getElementById("note");
+                        if (checkBox.checked == true){
+                            btnStuden.style.display = "inline";
+                            if (btnNote){
+                                btnNote.style.display = "flex";
+                                btnNote.style.margin = "0px";
+                            }
+                            if (editnote){
+                                editnote.disabled = false;
+                            }
+
+                        } else {
+                            btnStuden.style.display = "none";
+                            if (btnNote){
+                                btnNote.style.display = "none";
+                            }
+                            if (editnote){
+                                editnote.disabled = true;
+                            }
+                        }
+                    }
+
+                    var myArray = new Array()
+                    var numNotes = 1;
+
+                    function openForm() {
+                        document.getElementById("id01").style.display = "block";
+                    }
+
+                    function closeForm() {
+                        document.getElementById("id01").style.display = "none";
+                    }
+
+                    saveInfo = () => {
+                        closeForm();
+                        const names = document.getElementById('names').value;
+                        myArray = names.split(/\r?\n/);
+                        console.log(names)
+                        console.log(myArray)
+                        document.getElementById("id01").style.display = "none";
+                        if (myArray.length !== 0) {
+                            const todosTemplate = myArray.map(t =>
+                                    '<tr>'+
+                                        '<td>' + t + '</td>' +
+                                        '<td>' + 0 + '</td>' +
+                                    '</tr>')
+                            tblDatos.innerHTML = (
+                                '<tr>'+
+                                '<th>'+
+                                    '<div class="col text-end" style="margin: 0px; width: 70%;">'+
+                                        '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
+                                    '</div>'+
+                                '</th>'+
+                                '<th>'+
+                                    "Definitiva"+
+                                '</th>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<th onclick="sortTable(0)" style="cursor: pointer">'+
+                                        "Nombre de Estudiante"+
+                                    '</th>'+
+                                    '<th>'+
+                                        "100%"+
+                                    '</th>'+
+                                '</tr>'
+                            + todosTemplate.join(''));
+                        }
+                    }
+
+                    function insertarEstudiante() {
+                        var table = document.getElementById('tblDatos').insertRow(-1);
+
+                        var col1 = table.insertCell(0);
+                        col1.innerHTML = '<div contenteditable><input placeholder="Estudiante"></div>';
+
+                        var cols = document.getElementById('tblDatos').rows[2].cells.length;
+
+                        for (var i = 0; i < cols-2; i++)
+                        {
+                            let coln = table.insertCell(1);
+                            coln.innerHTML = '<div contenteditable><input placeholder="Nota"></div>';
+                        }
+
+                        var col3 = table.insertCell(-1);
+                        col3.innerHTML = '<div contenteditable><input placeholder="Definitiva"></div>';
+                    }
+
+                    function insertarNota() {
+                        var table = document.getElementById ('tblDatos');
+
+                        var rows = table.rows.length;
+                        var cols = document.getElementById('tblDatos').rows[2].cells.length;
+
+                        var firstRow = table.rows[0];
+                        var SecRow = table.rows[1];
+
+                        var cell1 = firstRow.insertCell (cols-1);
+                        var cell2 = SecRow.insertCell (cols-1);
+
+                        for (var i = 0; i < rows-2; i++)
+                        {
+                            const tmp = "Nota " + numNotes;
+                            cell1.innerHTML = tmp;
+                            cell2.innerHTML = '50%';
+
+                            var LstRow = table.rows[i+2];
+
+                            var celln = LstRow.insertCell (cols-1);
+
+                            const nota = "Nota" + i;
+
+                            celln.innerHTML = '<input type="text" id="note" placeholder=Nota style="width: 70px;"  maxlength="3">';
+                        }
+                        numNotes++
+                    }
+                    function sortTable(n) {
+                              var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                              table = document.getElementById("tblDatos");
+
+                              switching = true;
+
+                              dir = "asc";
+
+                              while (switching) {
+
+                                    switching = false;
+                                    rows = table.rows;
+
+                                    for (i = 2; i < (rows.length - 1); i++) {
+
+                                      x = rows[i].getElementsByTagName("TD")[n];
+                                      y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                                      if (dir == "asc") {
+                                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                                          shouldSwitch = true;
+                                          break;
+                                        }
+                                      } else if (dir == "desc") {
+                                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+
+                                          shouldSwitch = true;
+                                          break;
+                                        }
+                                      }
+                                    }
+                                    if (shouldSwitch) {
+
+                                      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                                      switching = true;
+
+                                      switchcount ++;
+                                    } else {
+
+                                      if (switchcount == 0 && dir == "asc") {
+                                        dir = "desc";
+                                        switching = true;
+                                      }
+                                    }
+                                  }
+                            }
+                </script>
+            </div>
+
+
+        </div>
+    <!-- <input type="button" class="btn-primary botones" onclick="insertarEstudiante()" value="Nuevo Estudiante" style="margin: 20px"> -->
+    </div>
+</div>
+{% endblock %}
