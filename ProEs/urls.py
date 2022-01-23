@@ -28,9 +28,9 @@ urlpatterns = [
     # path('xd/', include('xd.urls')),
     path('admin/', admin.site.urls),
 
-    path('users/', include(('users.urls', 'users'), namespace='users')),
+    path('users/', include('users.urls'), name='users'),
 
-    path('courses/', include(('courses.urls', 'courses'), namespace='courses')),
+    path('courses/', include('courses.urls'), name='courses'),
 
     path('', login_required(local_views.Home)),
     path('students', local_views.Login_Students),
