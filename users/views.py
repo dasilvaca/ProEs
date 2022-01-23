@@ -14,5 +14,6 @@ class RegistrarUsuario(CreateView):
     form_class = RegistroForm
     success_url = reverse_lazy('login')
 
+#No borrar por favor, es para hacer pruebas
 def testview(request):
-    return render(request, 'base/base2.html')
+    return render(request, 'common/base_users.html')
