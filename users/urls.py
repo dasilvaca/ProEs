@@ -4,7 +4,12 @@ from django.urls import path
 
 from users import views
 
+from users.views import RegistrarUsuario, testview
+from django.contrib.auth.decorators import login_required
+
 urlpatterns = [
-    path("login", views.Login.as_view(), name="login"),
-    path("signup", views.Signup.as_view(), name="signup"),
+    path('signup',RegistrarUsuario.as_view(),name='signup'),
+
+    #for test
+    path('test',testview,name='testview'),
 ]
