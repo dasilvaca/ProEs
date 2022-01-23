@@ -8,24 +8,34 @@
 {% block form_title %}Ingreso de profes{% endblock %}
 
 {% block base_users %}
-    <form>
+    <form method="post">
+        {% csrf_token %}
         <div class="form-group text-start" style="">
 
-            <input type="text" class="form-control form-users" id="input_dni" aria-describedby="dni_help"
-                   placeholder="Documento de Identidad" pattern="^[\d]+$"
-                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' style="margin-top: 50px">
+            <input type="text" 
+                    class="form-control" 
+                    id="input_dni" 
+                    aria-describedby="dni_help"
+                    placeholder="Documento de Identidad" 
+                    pattern="^[\d]+$"
+                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' 
+                    style="margin-top: 50px"
+                    
+                    name="username">
 
-            <input type="password" class="form-control form-users" id="teacher_password" aria-describedby="dni_help"
-                   placeholder="Contraseña" name="xd">
-            <a href="/courses">
-                <input type="button" class="btn-primary botones" value="Ingresar">
-            </a>
+            <input type="password" 
+                    class="form-control" 
+                    id="teacher_password" 
+                    aria-describedby="dni_help"
+                    placeholder="Contraseña" 
+                    name="password">
+            <input type="submit" class="btn-primary botones" value="Ingresar">
 
             <div class="text-center" style="margin-top: 15px">
-                <a href="/recovery" class="users-redirect-link">¿Olvidaste tu contraseña?</a>
+                <a href="{% url 'password_reset' %}" class="users-redirect-link">¿Olvidaste tu contraseña?</a>
             </div>
             <div class="text-center">
-                <a href="/users/signup" class="users-redirect-link">¿Es tu primera vez en ProEs? Registrate</a>
+                <a href="{% url 'signup' %}" class="users-redirect-link">¿Es tu primera vez en ProEs? Registrate</a>
             </div>
 
 
