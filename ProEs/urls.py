@@ -39,7 +39,7 @@ urlpatterns = [
 
     #Links for login and others
     path('usuario/', include('apps.usuario2.urls'),name='usuario'),
-    path('login/',LoginView.as_view(template_name='index.html'), name='login'),
+    path('login/',LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/',LogoutView.as_view(),name='logout'),
 
     path('reset/password_reset', PasswordResetView.as_view(template_name='registration/password_reset_form.html'), name="password_reset"),
