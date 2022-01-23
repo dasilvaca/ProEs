@@ -32,7 +32,7 @@ urlpatterns = [
 
     path('courses/', include('courses.urls'), name='courses'),
 
-    path('', login_required(local_views.Home)),
+    path('', local_views.Home),
     path('students', local_views.Login_Students),
     path('recovery', local_views.Recovery_Password),
     path('notes', local_views.Notes),
