@@ -38,7 +38,6 @@ urlpatterns = [
     path('notes', local_views.Notes),
 
     #Links for login and others
-    path('usuario/', include('apps.usuario2.urls'),name='usuario'),
     path('login/',LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/',LogoutView.as_view(),name='logout'),
 
