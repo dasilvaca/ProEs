@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'ProEs.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': BASE_DIR / 'db.sqlite3',
-        #'ENGINE': 'djongo',
-        #'NAME': "xdbd",
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': "proesdb",
 
     }
 }
