@@ -31,7 +31,7 @@ div {
     font-weight: 600;
     font-size: large;
     padding: 10px;
-
+    border: none;
 }
 
 .form-users {

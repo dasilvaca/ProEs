@@ -1,7 +1,8 @@
 # Create your views here.
 from django.views.generic import TemplateView
 from django.urls import *
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView, \
     PasswordResetView, PasswordResetConfirmView
 
@@ -22,6 +23,7 @@ class PasswordResetView(PasswordResetView):
     template_name = "ProEs/recovery_password.html"
 
     def get_success_url(self):
+        messages.success(self.request, "Se envio el link a tu correo!")
         return reverse('home')
 
 
@@ -30,4 +32,6 @@ class PasswordResetConfirmView(PasswordResetConfirmView):
     post_reset_login = True
 
     def get_success_url(self):
+        messages.success(self.request, 'Contraseña reestablecida correctamente')
         return reverse('courses')
+
