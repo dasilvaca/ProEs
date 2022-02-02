@@ -1,0 +1,45 @@
+{% extends "common/base_users.html" %}
+
+{% load static %}
+
+
+{% block head_content %}
+    <title>ProEs | Signup</title>
+{% endblock %}
+{% block form_title %} Registro de Profes {% endblock %}
+
+{% block base_users %}
+    <form>
+        <div class="form-group text-start" style="margin-top: 10px !important;">
+
+            <div class="inline-group row" style="margin-top: 50px ">
+                <div class="col-6" style="padding: 3px; margin: 0 0 0 0">
+                    <input type="text" class="form-control form-users" aria-describedby="dni_help"
+                           placeholder="Nombres" style=" margin: 0 0 0 0">
+                </div>
+                <div class="col-6" style="padding: 3px; margin: 0 0 0 0">
+                    <input type="text" class="form-control form-users" id="teacher_password"
+                           aria-describedby="dni_help"
+                           placeholder="Apellidos"  style=" margin: 0 0 0 0">
+                </div>
+            </div>
+
+            <input type="text" class="form-control form-users" aria-describedby="dni_help"
+                   placeholder="Documento de Identidad" pattern="^[\d]+$"
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' >
+             <input type="email" class="form-control form-users" aria-describedby="dni_help"
+                           placeholder="Correo electrónico">
+             <input type="password" class="form-control form-users" id="teacher_password" aria-describedby="dni_help"
+                   placeholder="Contraseña" name="xd">
+             <input type="password" class="form-control form-users" id="teacher_password" aria-describedby="dni_help"
+                   placeholder="Verificar contraseña" name="xd">
+            <a href="/courses">
+                <input type="button" class="btn-primary botones" value="Registro e ingreso">
+            </a>
+
+
+
+        </div>
+    </form>
+
+{% endblock %}

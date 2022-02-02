@@ -1,10 +1,19 @@
 from django.shortcuts import render
 
+
+from django.contrib.auth.models import User
+from django.views.generic import CreateView
+from django.urls import reverse_lazy
+from users.forms import RegistroForm
+
 # Create your views here.
-from django.views.generic import TemplateView
 
-class Login(TemplateView):
-    template_name = "users/login.html" #"about.html"
+class RegistrarUsuario(CreateView):
+    model = User
+    template_name = 'users/signup.html'
+    form_class = RegistroForm
+    success_url = reverse_lazy('login')
 
-class Signup(TemplateView):
-    template_name = "users/signup.html"  # "about.html"
+#No borrar por favor, es para hacer pruebas
+def testview(request):
+    return render(request, 'common/base_users.html')

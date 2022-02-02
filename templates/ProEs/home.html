@@ -3,13 +3,25 @@
 
 {% block home_content %}
     <div class="column-12">
-        <button type="button" class="btn btn-light btn-lg" style="font-size: xx-large; color: #6600FF; font-family: 'Helvetica'; margin: 4px">
-            <p1><b>Profesores</b></p1>
-        </button>
-        <a href="/students">
-            <button type="button" class="btn btn-light btn-lg" style="font-size: xx-large; color: #6600FF; font-family: Helvetica; margin: 4px">
-                <p1><b>Estudiantes</b></p1>
+
+            <button type="button" class="btn btn-light btn-lg"
+                    style="font-size: xx-large; margin: 4px; font-family: 'Inter', sans-serif">
+                 <a href="{% url 'logout' %}" style="text-decoration: none; color: blueviolet">
+                <p1>
+                    <b>Profesores</b>
+                </p1>
+                </a>
             </button>
-        </a>
+
+
+            <button type="button" class="btn btn-light btn-lg"
+                    style="font-size: xx-large; font-family: Helvetica; margin: 4px">
+                <a href="/students" style="text-decoration: none; color: blueviolet">
+                <p1>
+                    <b>Estudiantes</b>
+                </p1>
+                </a>
+            </button>
+
     </div>
 {% endblock %}

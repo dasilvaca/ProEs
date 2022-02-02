@@ -4,10 +4,14 @@
 {% block  head_content %}
     <title>Base</title>
 {% endblock %}
+{% block header-content %}
+
+{% endblock %}
+
 {% block content %}
     <main>
         <div class="container-fluid overflow-auto" style="height: 100vh; margin: 0; padding: 3%; background: #dcdbdb; min-height: 300px">
-            <div class="shadow-lg row" style="height: auto; min-height: 100%; border-radius: 20px; background: white;">
+            <div class="shadow-lg" style="height: auto; min-height: 100%; border-radius: 20px; background: white;">
                 {% block white_base %}{% endblock %}
             </div>
         </div>
