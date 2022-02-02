@@ -32,19 +32,16 @@ urlpatterns = [
 
     path('courses/', include('courses.urls'), name='courses'),
 
-    path('', local_views.Home),
-    path('students', local_views.Login_Students),
-    path('recovery', local_views.Recovery_Password),
-    path('notes', local_views.Notes),
+    path('', local_views.Home.as_view(), name = 'home'),
+    path('students', local_views.LoginStudents.as_view(), name = 'login_students'),
+    path('notes', local_views.Notes.as_view(), name = 'notes'),
 
     #Links for login and others
+    
+    
     path('login/',LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/',LogoutView.as_view(),name='logout'),
 
-    path('reset/password_reset', PasswordResetView.as_view(template_name='ProEs/recovery_password.html'), name="password_reset"),
-    path('reset/password_reset_done', PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name="password_reset_done"),
-    path('reset/password_reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
-    path('reset/password_reset/done', PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
-
-
+    path('reset/password_reset', local_views.PasswordResetView.as_view(), name="password_reset"),
+    path('reset/password_reset/<uidb64>/<token>/', local_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'), 
 ]
