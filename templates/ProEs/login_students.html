@@ -1,12 +1,15 @@
 {% extends "ProEs/home_base.html" %}
 {% load static %}
 
+{% block head_content %}
+    <title>ProEs | Consultar Notas </title>
+{%endblock%}
+
 {% block home_content %}
-    <div class="col-4"></div>
-    <div class="col-4">
+    <div class="col-12 col-md-7 mt-5">
         <form>
             <div class="form-group">
-                <input type="text" class="form-control form-users" id="Input_Studend_ID" placeholder="Digita tu numero de identificación">
+                <input type="text" class="form-control " id="Input_Studend_ID" placeholder="Digita tu numero de identificación">
             </div>
 {#            Cambiar el tipo de botton a submit cuando sea requerido#}
             <a href = "/notes" style="text-decoration: none; border: none">
@@ -16,5 +19,4 @@
             </a>
         </form>
     </div>
-    <div class="col-4"></div>
 {% endblock %}
