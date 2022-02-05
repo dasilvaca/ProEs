@@ -110,6 +110,14 @@ div {
     align-items: center;
 }
 
+#form-content-signUp {
+    width: 75%;
+    position: absolute;
+    left: 10%;
+    top: 20vh;
+    text-align: left;
+}
+
 #form-content {
     width: 75%;
     position: absolute;
@@ -117,4 +125,3 @@ div {
     top: 25vh;
     text-align: left;
 }
-

@@ -18,7 +18,7 @@
                     <?php $_SESSION('last_page') = request_uri(); ?>
                     <i class="bi bi-chevron-left go-back-chevron-button" id="users-go-back"></i>
                 </a>
-                <div id="form-content">
+                <div id="{%block typeForm %} {% endblock %}">
                     <h1 id="form-title">{% block form_title %} {% endblock %}</h1>
                     {% block base_users %}{% endblock %}
                 </div>
