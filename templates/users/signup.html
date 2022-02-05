@@ -8,7 +8,10 @@
 {% endblock %}
 {% block form_title %} Registro de Profes {% endblock %}
 
+{% block typeForm %}form-content-signUp{% endblock %}
+
 {% block base_users %}
+
     <form method="post">
         {% csrf_token %}
         <div class="form-group text-start" style="margin-top: 10px !important;">
@@ -25,68 +28,68 @@
                 <div class="col-6" style="padding: 3px; margin: 0 0 0 0">
 
                     <input  type="text"
-                            class="form-control form-users" 
+                            class="form-control form-users"
                             aria-describedby="dni_help"
-                            placeholder="Nombres" 
+                            placeholder="Nombres"
                             style=" margin: 0 0 0 0"
- 
-                            name="first_name" 
-                            maxlength="30" 
+
+                            name="first_name"
+                            maxlength="30"
                             id="id_first_name">
                 </div>
                 <div class="col-6" style="padding: 3px; margin: 0 0 0 0">
                     <input type="text"
                            class="form-control form-users"
                            aria-describedby="dni_help"
-                           placeholder="Apellidos"  
+                           placeholder="Apellidos"
                            style=" margin: 0 0 0 0"
-                            
-                           name="last_name" 
-                           maxlength="150" 
+
+                           name="last_name"
+                           maxlength="150"
                            id="id_last_name">
                 </div>
             </div>
 
             <input type="text"
-                    class="form-control form-users" 
+                    class="form-control form-users"
                     aria-describedby="dni_help"
                     placeholder="Documento de Identidad"
                     pattern="^[\d]+$"
-                    onkeypress='return event.charCode >= 48 && event.charCode <= 57' 
-                    
-                    name="username" 
-                    maxlength="150" 
-                    autofocus="" 
-                    required="" 
+                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+
+                    name="username"
+                    maxlength="150"
+                    autofocus=""
+                    required=""
                     id="id_username">
-             <input type="email" 
-                    class="form-control form-users" 
+             <input type="email"
+                    class="form-control form-users"
                     aria-describedby="dni_help"
                     placeholder="Correo electrónico"
-                    
-                    name="email" 
-                    maxlength="254" 
+
+                    name="email"
+                    maxlength="254"
                     id="id_email">
-             <input type="password" 
-                    class="form-control form-users" 
-                    id="teacher_password" 
+             <input type="password"
+                    class="form-control form-users"
+                    id="teacher_password"
                     aria-describedby="dni_help"
-                    placeholder="Contraseña" 
-                    
-                    name="password1" 
-                    autocomplete="new-password" 
-                    required="" 
+                    placeholder="Contraseña"
+
+                    name="password1"
+                    autocomplete="new-password"
+                    required=""
                     id="id_password1">
-             <input type="password" 
-                    class="form-control form-users" 
+             <input type="password"
+                    class="form-control form-users"
                     aria-describedby="dni_help"
-                    placeholder="Verificar contraseña" 
-                    
-                    name="password2" 
-                    autocomplete="new-password" 
-                    required="" 
+                    placeholder="Verificar contraseña"
+
+                    name="password2"
+                    autocomplete="new-password"
+                    required=""
                     id="id_password2">
-            
+
         <input type="submit" class="btn-primary botones" value="Registro e ingreso">
         </div>
     </form>
