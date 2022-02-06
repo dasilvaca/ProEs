@@ -20,6 +20,7 @@ def Courses(request):
     for x in salida:
         x["_id"]=str(x["_id"])
         asignaturas.append(x)
+    #import pdb; pdb.set_trace()
     # id = str(db.find_one({"asignatura.nombre":"ESTADÍSTICA"},{"_id":1})["_id"])
     # out = db.find_one({"_id":ObjectId(id)})
     return render(request, "courses/courses.html", {"contexto": asignaturas})  # "about.html"
@@ -45,7 +46,7 @@ def NewCourse(request):
         db = connect("proesCol")
         db.insert(query)
         return redirect('courses')
-    return render(request, "courses/newcourse.html",{"contexto":asignaturas})  # "about.html"
+    return render(request, "courses/newcourse.html")  # "about.html"
 
 
 def Spreadsheet(request, id):
