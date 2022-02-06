@@ -42,12 +42,6 @@ def NewCourse(request):
     profesor = request.user.username
     asignaturas = []
     db = connect("proesCol")
-    #salida = db.find({"profesor":profesor})
-    #for x in salida:
-     #   asignaturas.append(x["asignatura"]["nombre"])
-
-    #id = str(db.find_one({"asignatura.nombre":"ESTADÍSTICA"},{"_id":1})["_id"])
-    #out = db.find_one({"_id":ObjectId(id)})
     
     if request.method == 'POST':
         nombre = request.POST["nombre"]
@@ -62,4 +56,5 @@ def NewCourse(request):
 
 
 def Spreadsheet(request, id):
+
     return render(request, "courses/spreadsheet.html")   # "about.html"
