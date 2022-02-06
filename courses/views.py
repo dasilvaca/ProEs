@@ -16,13 +16,10 @@ def Courses(request):
     profesor = request.user.username
     asignaturas = []
     db = connect("proesCol")
-    salida = db.find({"profesor":profesor})
-
+    salida = db.find({"profesor":profesor},{"asignatura.nombre":1})
     for x in salida:
-       asignaturas.append(x)
-
-    print(asignaturas)
-
+        x["_id"]=str(x["_id"])
+        asignaturas.append(x)
     # id = str(db.find_one({"asignatura.nombre":"ESTADÍSTICA"},{"_id":1})["_id"])
     # out = db.find_one({"_id":ObjectId(id)})
     return render(request, "courses/courses.html", {"contexto": asignaturas})  # "about.html"
@@ -37,18 +34,8 @@ class TopBest(LoginRequiredMixin, TemplateView):
 
 @login_required
 def NewCourse(request):
-
-    #Para saber las asignaturas de un profesor
-    profesor = request.user.username
-    asignaturas = []
-    db = connect("proesCol")
-    salida = db.find({"profesor":profesor},{"asignatura.nombre":1})
-    for x in salida:
-        x["_id"]=str(x["_id"])
-        asignaturas.append(x)
     #id = str(db.find_one({"asignatura.nombre":"ESTADÍSTICA"},{"_id":1})["_id"])
     #out = db.find_one({"_id":ObjectId(id)})
-    
     if request.method == 'POST':
         nombre = request.POST["nombre"]
         min = float(request.POST["min"])
