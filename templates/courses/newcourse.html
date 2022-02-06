@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block white_base %}
-
+    {{ contexto }}
     <header style="max-height: 100px; padding: 20px">
         <div style="float: left; clear: both; text-align: center">
             <h1 id="form-title" style="margin: 18px">Agregar nueva asignatura</h1>
@@ -41,9 +41,9 @@
 
 <!--                    <input class="form-control form-users" type="text" placeholder="Cantidad de estudiantes">-->
 
-                    <input class="form-control form-users" type="number" name="calmin" placeholder="Calificación mínima">
+                    <input class="form-control form-users" type="number" name="min" placeholder="Calificación mínima">
 
-                    <input class="form-control form-users" type="number" name="calmax" placeholder="Calificación máxima">
+                    <input class="form-control form-users" type="number" name="max" placeholder="Calificación máxima">
 
 
                     <a href="/courses">
