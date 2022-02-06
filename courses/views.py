@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 #Para conectarse a mongoDB desde python
 from utils import *
+from bson import ObjectId
 
 # Create your views here.
 class Courses(LoginRequiredMixin, TemplateView):
@@ -21,15 +22,28 @@ class TopBest(LoginRequiredMixin, TemplateView):
 
 @login_required
 def NewCourse(request):
+
+    #Para saber las asignaturas de un profesor
+    profesor = request.user.username
+    asignaturas = []
+    db = connect("proesCol")
+    salida = db.find({"profesor":profesor})
+    for x in salida:
+        asignaturas.append(x["asignatura"]["nombre"])
+
+    id = str(db.find_one({"asignatura.nombre":"ESTADÍSTICA"},{"_id":1})["_id"])
+    out = db.find_one({"_id":ObjectId(id)})
+    
     if request.method == 'POST':
         nombre = request.POST["nombre"]
         min = float(request.POST["min"])
         max = float(request.POST["max"])
-        query = {"nombre":nombre,"min":min,"max":max}
+        profesor = request.user.username
+        query = {"asignatura":{"nombre":nombre,"min":min,"max":max},"profesor":profesor}
         db = connect("proesCol")
         db.insert(query)
         #import pdb;pdb.set_trace()
-    return render(request, "courses/newcourse.html")  # "about.html"
+    return render(request, "courses/newcourse.html",{"contexto":asignaturas})  # "about.html"
 
 
 class Spreadsheet(LoginRequiredMixin, TemplateView):
