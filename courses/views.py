@@ -19,7 +19,6 @@ class TopBest(LoginRequiredMixin, TemplateView):
 @login_required
 def NewCourse(request):
     if request.method == 'POST':
-        req = request.POST
         print(request.POST['nombre'])
     return render(request, "courses/newcourse.html")  # "about.html"
 
