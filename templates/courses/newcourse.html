@@ -33,20 +33,21 @@
 
     <div class="row" style="min-height: 100%">
         <div class="col-6">
-            <form>
-                <div class="form-group text-start">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group text-start" >
 
-                    <input class="form-control form-users" type="text" placeholder="Nombre de la asignatura">
+                    <input class="form-control form-users" type="text" name="nombre" placeholder="Nombre de la asignatura" autofocus>
 
-                    <input class="form-control form-users" type="text" placeholder="Cantidad de estudiantes">
+<!--                    <input class="form-control form-users" type="text" placeholder="Cantidad de estudiantes">-->
 
-                    <input class="form-control form-users" type="text" placeholder="Calificación mínima">
+                    <input class="form-control form-users" type="number" name="calmin" placeholder="Calificación mínima">
 
-                    <input class="form-control form-users" type="text" placeholder="Calificación máxima">
+                    <input class="form-control form-users" type="number" name="calmax" placeholder="Calificación máxima">
 
 
                     <a href="/courses">
-                        <input type="button" class="btn-primary botones" value="Crear Asignatura">
+                        <input type="submit" class="btn-primary botones" value="Crear Asignatura">
                     </a>
 
 

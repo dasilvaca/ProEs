@@ -19,8 +19,22 @@ class RegistrarUsuario(CreateView):
         username = self.object.first_name
         mensaje = 'Bienvenido ' + username
         messages.success(self.request, mensaje)
-        return reverse('courses')
+        return reverse('login')
 
 #No borrar por favor, es para hacer pruebas
 def testview(request):
     return render(request, 'common/base_users.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
