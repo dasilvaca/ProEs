@@ -42,10 +42,10 @@ def NewCourse(request):
     profesor = request.user.username
     asignaturas = []
     db = connect("proesCol")
-    #salida = db.find({"profesor":profesor})
-    #for x in salida:
-     #   asignaturas.append(x["asignatura"]["nombre"])
-
+    salida = db.find({"profesor":profesor},{"asignatura.nombre":1})
+    for x in salida:
+        x["_id"]=str(x["_id"])
+        asignaturas.append(x)
     #id = str(db.find_one({"asignatura.nombre":"ESTADÍSTICA"},{"_id":1})["_id"])
     #out = db.find_one({"_id":ObjectId(id)})
     
