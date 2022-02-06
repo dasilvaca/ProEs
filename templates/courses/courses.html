@@ -34,37 +34,42 @@ padding: 0;
 margin: 20px auto 0 auto;"></div>
     <div class="row">
         <div class="row">
+            {%for materia in contexto%}
+            <!--                Empieza la carta-->
             <div class="col-12 col-md-3">
-                <div class="card border-success mb-3 border-color"
-                     style="max-width: 18rem; border-radius: 21px; border-color: black;">
-                    <div class="card-header border-success"
-                         style="border-radius: 21px 21px 0px 0px;; background-color: #5112d9; overflow: visible ;color: #ffffff; font-family: sans-serif;">
-                        <div class="row">
-                            <div class="col-12 col-lg-9">
-                                <a href="/courses/spreadsheet">
-                                    <button type="button" class="btn"
-                                        style="background-color: #5112d9; border-color: #5112d9;">
-                                    <h6 style="color: white; font-family: 'Inter', sans-serif">Nombre asignatura</h6>
-                                </button>
+
+                    <div class="card border-success mb-3 border-color"
+                         style="max-width: 18rem; border-radius: 21px; border-color: black;">
+                        <div class="card-header border-success"
+                             style="border-radius: 21px 21px 0px 0px;; background-color: #5112d9; overflow: visible ;color: #ffffff; font-family: sans-serif;">
+                            <div class="row">
+                                <div class="col-12 col-lg-9">
+                                    <a href="{% url 'spreadsheet'action = 'add' materia.asignatura.nombre%}">
+                                        <button type="button" class="btn"
+                                            style="background-color: #5112d9; border-color: #5112d9;">
+                                        <h6 style="color: white; font-family: 'Inter', sans-serif">{{materia.asignatura.nombre}}</h6>
+                                    </button>
+                                    </a>
+                                </div>
+                                <div class="col-12 col-lg-3">
+                                    <a data-bs-toggle="modal" data-bs-target="#modificarasignatura" class="btn" style="background-color: #5112d9; border-color: #5112d9; color: white;"><i class="bi bi-three-dots-vertical"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body text-success">
+                            <div class="d-grid gap-2">
+                                <a href="/courses/topbest">
+                                    <button type="button" class="btn btn-dark">Generar top 3 mejores estudiantes</button>
+                                </a>
+                                <a href="/courses/topworst">
+                                    <button type="button" class="btn btn-dark">Generar top 3 peores estudiantes</button>
                                 </a>
                             </div>
-                            <div class="col-12 col-lg-3">
-                                <a data-bs-toggle="modal" data-bs-target="#modificarasignatura" class="btn" style="background-color: #5112d9; border-color: #5112d9; color: white;"><i class="bi bi-three-dots-vertical"></i></a>
-                            </div>
                         </div>
                     </div>
-                    <div class="card-body text-success">
-                        <div class="d-grid gap-2">
-                            <a href="/courses/topbest">
-                                <button type="button" class="btn btn-dark">Generar top 3 mejores estudiantes</button>
-                            </a>
-                            <a href="/courses/topworst">
-                                <button type="button" class="btn btn-dark">Generar top 3 peores estudiantes</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <!--                Finaliza carta-->
+            {%endfor%}
             <div class="col-12 col-md-3">
                 
             </div>

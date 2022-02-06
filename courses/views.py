@@ -61,5 +61,5 @@ def NewCourse(request):
     return render(request, "courses/newcourse.html",{"contexto":asignaturas})  # "about.html"
 
 
-class Spreadsheet(LoginRequiredMixin, TemplateView):
-    template_name = "courses/spreadsheet.html"  # "about.html"
+def Spreadsheet(request, id):
+    return render(request, "courses/spreadsheet.html")   # "about.html"
