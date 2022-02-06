@@ -48,6 +48,12 @@ def NewCourse(request):
         return redirect('courses')
     return render(request, "courses/newcourse.html")  # "about.html"
 
-
+@login_required
 def Spreadsheet(request, id):
-    return render(request, "courses/spreadsheet.html")   # "about.html"
+    profesor = request.user.username
+    asignaturas = []
+    db = connect("proesCol")
+    salida = db.find({"_id":ObjectId(id)})[0]
+    salida["id"] = str(salida["_id"])
+    import pdb;pdb.set_trace()
+    return render(request, "courses/spreadsheet.html",{"contexto":salida})   # "about.html"
