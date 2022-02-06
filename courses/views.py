@@ -18,7 +18,7 @@ def Courses(request):
     db = connect("proesCol")
     salida = db.find({"profesor":profesor},{"asignatura.nombre":1})
     for x in salida:
-        x["_id"]=str(x["_id"])
+        x["id"]=str(x["_id"])
         asignaturas.append(x)
     # id = str(db.find_one({"asignatura.nombre":"ESTADÍSTICA"},{"_id":1})["_id"])
     # out = db.find_one({"_id":ObjectId(id)})
