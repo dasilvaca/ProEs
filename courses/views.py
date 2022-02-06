@@ -45,7 +45,7 @@ def NewCourse(request):
         db = connect("proesCol")
         db.insert(query)
         return redirect('courses')
-    return render(request, "courses/newcourse.html",{"contexto":asignaturas})  # "about.html"
+    return render(request, "courses/newcourse.html")  # "about.html"
 
 
 def Spreadsheet(request, id):
