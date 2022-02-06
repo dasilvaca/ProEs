@@ -2,11 +2,15 @@
 {% load static %}
 
 {% block home_content %}
-    <div class="column-12">
+    <div class="col-12 text-center mt-5">
 
             <button type="button" class="btn btn-light btn-lg"
                     style="font-size: xx-large; margin: 4px; font-family: 'Inter', sans-serif">
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'courses' %}" style="text-decoration: none; color: blueviolet">
+                {% else %}
                  <a href="{% url 'logout' %}" style="text-decoration: none; color: blueviolet">
+                 {% endif %}
                 <p1>
                     <b>Profesores</b>
                 </p1>
@@ -22,6 +26,5 @@
                 </p1>
                 </a>
             </button>
-
     </div>
 {% endblock %}

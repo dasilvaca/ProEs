@@ -4,27 +4,34 @@
     <title>ProEs | Courses</title>
 {% endblock %}
 {% block white_base %}
-    <header style="padding: 20px">
-        <div class="row">
-            <div class="col-12 col-lg-10 d-flex justify-content-start" style="float: left; clear: both; text-align: center">
-                <h1 id="form-title" style="margin: 10px">Bienvenido, estas son tus asignaturas</h1>
-            </div>
-            <div class="col-12 col-lg-2 ">
-                <div style="float: right; border-color: red; border-style: none; margin-right: 10px">
-                    <div style="display: inline-block;">
-                        <img alt="user_card" class="rounded-circle" src="/static/common/lili.jpg"
-                             style="max-height: 100px; max-width: 100px; width: 100%; float: left; clear: both; display: inline"/>
-                        <div style="display: inline-block; max-width: 16em; padding-left: 5px; text-align: center; margin: auto;padding-top: 18px">
-                            <h3 style="font-family: 'Inter', sans-serif;display: block; max-width: 18em; word-wrap: break-word; margin: 0">
-                                Profe Lili</h3>
-                            <a href="{% url 'logout' %}"
-                               style="display: block; float: right; text-align: center; font-family: 'Inter', sans-serif; color: #504E4E">Cerrar
-                                sesión</a>
-                        </div>
-                    </div>
+<header style="max-height: 100px; padding: 20px">
+    <div style="float: left; clear: both; text-align: center">
+        <h1 id="form-title" style="margin: 18px">Bienvenido, estas son tus asignaturas</h1>
+    </div>
+
+    <div style="float: right; border-color: red; border-style: none; margin-right: 10px">
+        <div style="display: inline-block;">
+            <img alt="user_card" class="rounded-circle" src="/static/common/lili.jpg"
+                 style="max-height: 100px; max-width: 100px; width: 100%; float: left; clear: both; display: inline"/>
+            <div style="display: inline-block; max-width: 16em; padding-left: 5px; text-align: center; margin: auto;padding-top: 18px">
+                <h3 style="font-family: 'Inter', sans-serif;display: block; max-width: 18em; word-wrap: break-word; margin: 0">
+                    Profe Lili</h3>
+                <a href="{% url 'logout' %}"
+                   style="display: block; float: right; text-align: center; font-family: 'Inter', sans-serif; color: #504E4E">Cerrar
+                    sesión</a>
             </div>
         </div>
-    </header>
+
+    </div>
+
+
+</header>
+<div></div>
+<div class="linea" style="border-top: 1px solid black;
+height: 2px;
+max-width: 2000px;
+padding: 0;
+margin: 20px auto 0 auto;"></div>
     <div class="row">
         <div class="row">
             <div class="col-12 col-md-3">

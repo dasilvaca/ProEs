@@ -1,19 +1,37 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.views.generic import TemplateView
+from django.urls import *
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.views import LoginView, LogoutView, \
+    PasswordResetView, PasswordResetConfirmView
 
-def Home(request):
-    """List existing posts."""
-    return render(request, 'ProEs/home.html')
 
-def Login_Students(request):
-    return render(request, 'ProEs/login_students.html')
+class Home(TemplateView):
+    template_name = 'ProEs/home.html'
 
-def Recovery_Password(request):
-    return render(request, 'ProEs/recovery_password.html')
 
-def Notes(request):
-    return render(request, 'ProEs/notes.html')
+class LoginStudents(TemplateView):
+    template_name = 'ProEs/login_students.html'
 
+
+class Notes(TemplateView):
+    template_name = 'ProEs/notes.html'
+
+
+class PasswordResetView(PasswordResetView):
+    template_name = "ProEs/recovery_password.html"
+
+    def get_success_url(self):
+        messages.success(self.request, "Se envio el link a tu correo!")
+        return reverse('home')
+
+
+class PasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'registration/password_reset_confirm.html'
+    post_reset_login = True
+
+    def get_success_url(self):
+        messages.success(self.request, 'Contraseña reestablecida correctamente')
+        return reverse('courses')
 
