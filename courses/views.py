@@ -4,6 +4,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
+#Para conectarse a mongoDB desde python
+from utils import *
+
 # Create your views here.
 class Courses(LoginRequiredMixin, TemplateView):
     template_name = "courses/courses.html"  # "about.html"
@@ -19,8 +22,13 @@ class TopBest(LoginRequiredMixin, TemplateView):
 @login_required
 def NewCourse(request):
     if request.method == 'POST':
-        req = request.POST
-        print(request.POST['nombre'])
+        nombre = request.POST["nombre"]
+        min = float(request.POST["min"])
+        max = float(request.POST["max"])
+        query = {"nombre":nombre,"min":min,"max":max}
+        db = connect("proesCol")
+        db.insert(query)
+        #import pdb;pdb.set_trace()
     return render(request, "courses/newcourse.html")  # "about.html"
 
 
