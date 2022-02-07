@@ -85,6 +85,10 @@ DATABASES = {
         #'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'djongo',
         'NAME': "proesdb",
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+                'host': "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.rtlur.mongodb.net/retryWrites=true&w=majority"
+        } 
 
     }
 }
