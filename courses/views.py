@@ -50,6 +50,11 @@ def NewCourse(request):
 
 @login_required
 def Spreadsheet(request, id):
+    db = connect("proesCol")
+    query = {"_id":ObjectId(id)},{"tipo_nota":1,}
+    arr= db.find_one(query)
+
+
     profesor = request.user.username
     asignaturas = []
     db = connect("proesCol")
