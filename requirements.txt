@@ -5,3 +5,5 @@ pymongo[snappy,gssapi,srv,tls]
 certifi
 sqlparse==0.2.4
 pytz
+wheel
+dnspython
