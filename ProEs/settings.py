@@ -141,7 +141,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #for login and others
 
+<<<<<<< HEAD
 #DEFAULT_FROM_EMAIL = "losmejoresdeingesoft@gmail.com"
+=======
+DEFAULT_FROM_EMAIL = "ProEs <losmejoresdeingesoft@gmail.com>"
+>>>>>>> 751f54b36535313c265249b1cb33fda0e637dc05
 
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('courses')
