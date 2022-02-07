@@ -20,9 +20,6 @@ def Courses(request):
     for x in salida:
         x["id"]=str(x["_id"])
         asignaturas.append(x)
-    #import pdb; pdb.set_trace()
-    # id = str(db.find_one({"asignatura.nombre":"ESTADÍSTICA"},{"_id":1})["_id"])
-    # out = db.find_one({"_id":ObjectId(id)})
     return render(request, "courses/courses.html", {"contexto": asignaturas})  # "about.html"
 
 
@@ -50,10 +47,19 @@ def NewCourse(request):
 
 @login_required
 def Spreadsheet(request, id):
-    profesor = request.user.username
-    asignaturas = []
+    #tipo_notas y estudiantes es lo que se va a recibir del spreedsheet
+    tipo_notas = []
+    estudiantes = {}
+
     db = connect("proesCol")
-    salida = db.find({"_id":ObjectId(id)})[0]
+    query = {"_id":ObjectId(id)}
+    salida= db.find(query)[0]
+    
+    if tipo_notas != salida["tipo_notas"]:
+        db.update_one(query,{"$set":{"tipo_notas":tipo_notas}})
+    if estudiantes != salida["estudiantes"]:
+        db.update_one(query,{"$set":{"estudiantes":estudiantes}})
+
+    salida = db.find(query)[0]
     salida["id"] = str(salida["_id"])
-    #print(salida)
     return render(request, "courses/spreadsheet.html",{"contexto":salida})   # "about.html"
