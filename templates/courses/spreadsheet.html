@@ -106,8 +106,10 @@
 
             <div class="container">
                 <label><h3>Estudiantes</h3></label>
+                <p>El formato es: "Nombre" - "documento de identidad", ejemplo:</p>
+                <p>Rafael Romero - 100032434</p>
                 <p>Recuerde que los estudiantes deben estar separados por un salto de linea.</p>
-                <textarea class="form-control" placeholder="Ingrese los estudiantes..." rows="20" id='names'></textarea>
+                <textarea class="form-control" placeholder="Ingrese los estudiantes..." rows="15" id='names'></textarea>
                 <button  type="button" class="btn-primary botones" onclick="saveInfo(); return false" style="margin: 10px 0px 15px 0px;">Guardar</button>
             </div>
         </form>
@@ -192,64 +194,47 @@
             for (var i = 0; i < myArray.length; i++) {
                 text = myArray[i].split("-")
                 var temp = {}
-                temp["nombre"] = text[0].trim()
-                temp["di"] = text[1].trim()
-                temp["notas"] = [0]
-                temp["definitiva"] = 0
-                estudiantes.push(temp)
-            }
-
-            document.getElementById("id01").style.display = "none";
-            if (myArray.length !== 0) {
-                const todosTemplate = estudiantes.map(t =>
-                        '<tr>'+
-                            '<td>' + t["nombre"] + '</td>' +
-                            '<td>' + t["definitiva"] + '</td>' +
-                        '</tr>')
-                tblDatos.innerHTML = (
-                    '<tr>'+
-                    '<th>'+
-                        '<div class="col text-end" style="margin: 0px; width: 70%;">'+
-                            '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
-                        '</div>'+
-                    '</th>'+
-                    '<th>'+
-                        "Definitiva"+
-                    '</th>'+
-                    '</tr>'+
-                    '<tr>'+
-                        '<th onclick="sortTable(0)" style="cursor: pointer">'+
-                            "Nombre de Estudiante"+
-                        '</th>'+
-                        '<th>'+
-                            "100%"+
-                        '</th>'+
-                    '</tr>'
-                + todosTemplate.join(''));
-            }
+                try{
+                    temp["nombre"] = text[0].trim()
+                    temp["di"] = text[1].trim()
+                    temp["notas"] = [0]
+                    temp["definitiva"] = 0
+                    estudiantes.push(temp)
+                    document.getElementById("id01").style.display = "none";
+                    if (myArray.length !== 0) {
+                        const todosTemplate = estudiantes.map(t =>
+                                '<tr>'+
+                                    '<td>' + t["nombre"] + '</td>' +
+                                    '<td>' + t["definitiva"] + '</td>' +
+                                '</tr>')
+                        tblDatos.innerHTML = (
+                            '<tr>'+
+                            '<th>'+
+                                '<div class="col text-end" style="margin: 0px; width: 70%;">'+
+                                    '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
+                                '</div>'+
+                            '</th>'+
+                            '<th>'+
+                                "Definitiva"+
+                            '</th>'+
+                            '</tr>'+
+                            '<tr>'+
+                                '<th onclick="sortTable(0)" style="cursor: pointer">'+
+                                    "Nombre"+
+                                '</th>'+
+                                '<th>'+
+                                    "100%"+
+                                '</th>'+
+                            '</tr>'
+                        + todosTemplate.join(''));
+                    }
+                }
+                catch(error){
+                    window.alert("RECUERDA QUE EL FORMATO PARA INGRESAR ES:\n 'Nombre' - 'documento de identidad'");
+                }
+            }            
         }
 
-        function createNonEditableTable(){
-            noEditable.innerHTML = (
-                    '<tr>'+
-                    '<th>'+
-                        '<div class="col text-end" style="margin: 0px; width: 70%;">'+
-                            '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
-                        '</div>'+
-                    '</th>'+
-                    '<th>'+
-                        "Definitiva"+
-                    '</th>'+
-                    '</tr>'+
-                    '<tr>'+
-                        '<th onclick="sortTable(0)" style="cursor: pointer">'+
-                            "Nombre de Estudiante"+
-                        '</th>'+
-                        '<th>'+
-                            "100%"+
-                        '</th>'+
-                    '</tr>');
-        }
 
         function insertarEstudiante() {
             var table = document.getElementById('tblDatos').insertRow(-1);
