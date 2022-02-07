@@ -39,7 +39,7 @@ def NewCourse(request):
         min = float(request.POST["min"])
         max = float(request.POST["max"])
         profesor = request.user.username
-        query = {"asignatura":{"nombre":nombre,"min":min,"max":max},"profesor":profesor}
+        query = {"asignatura":{"nombre":nombre,"min":min,"max":max},"profesor":profesor,"tipo_notas":[],"estudiantes":{}}
         db = connect("proesCol")
         db.insert(query)
         return redirect('courses')
