@@ -55,5 +55,5 @@ def Spreadsheet(request, id):
     db = connect("proesCol")
     salida = db.find({"_id":ObjectId(id)})[0]
     salida["id"] = str(salida["_id"])
-    import pdb;pdb.set_trace()
+    #print(salida)
     return render(request, "courses/spreadsheet.html",{"contexto":salida})   # "about.html"
