@@ -82,7 +82,7 @@
     <header style="padding: 20px">
         <div class="row">
             <div class=<div class="col-12 col-lg-10 d-flex justify-content-start" style="float: left; clear: both; text-align: left">
-                <h1 id="form-title" style="margin: 10px">Nombre Asignatura</h1>
+                <h1 id="form-title" style="margin: 10px">Nombre de la asignatura</h1>
             </div>
             <!--        <div class="col-8"></div>-->
             <div class="col text-end">
@@ -94,6 +94,8 @@
     <div>
         <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="edit()">
         <label style="width:auto; margin-left: 40px; border-radius: 8px; padding: 10px; " class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label>
+        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" onclick="highLightFinalGrade()">
+        <label style="width:auto; margin-left: 10px; border-radius: 8px; padding: 10px; " class="btn btn-outline-success" for="btncheck2">Definitivas</label>
         <button id="addStudents" onclick="openForm()" style="width:auto; margin: 10px; display:none"  type="button" class="btn-primary botones">Estudiantes</button>
     </div>
     <div id="id01" class="modal">
@@ -110,194 +112,405 @@
             </div>
         </form>
     </div>
-    <div style="overflow:scroll;height:610px;margin-right:10px; margin-left: 10px" class="section">
+    <div style="overflow:scroll;height:610px;margin-right:10px; margin-left: 10px;" class="section">
         <div class="row">
             <div class="col" style="margin: 20px; width: 80%">
 
-                <table id="tblDatos" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px;" class="table table-bordered table-hover align-middle"> <!-- table-bordered -->
-
-                    <!-- <tr>
-                        <td><div contenteditable><input placeholder="Estudiante"></div></td>
-                        <td><div contenteditable><input placeholder="Nota"></div></td>
-                        <td><div contenteditable><input placeholder="Definitiva"></div></td>
-                    </tr> -->
-
+                <table id="tblDatos" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px; z-index:2;" class="table table-bordered table-hover align-middle"> 
                 </table>
 
-                <script>
-
-                    function edit() {
-                        var checkBox = document.getElementById("btncheck1");
-                        var btnStuden = document.getElementById("addStudents");
-                        var btnNote = document.getElementById("newNote");
-                        let editnote = document.getElementById("note");
-                        if (checkBox.checked == true){
-                            btnStuden.style.display = "inline";
-                            if (btnNote){
-                                btnNote.style.display = "flex";
-                                btnNote.style.margin = "0px";
-                            }
-                            if (editnote){
-                                editnote.disabled = false;
-                            }
-
-                        } else {
-                            btnStuden.style.display = "none";
-                            if (btnNote){
-                                btnNote.style.display = "none";
-                            }
-                            if (editnote){
-                                editnote.disabled = true;
-                            }
-                        }
-                    }
-
-                    var myArray = new Array()
-                    var numNotes = 1;
-
-                    function openForm() {
-                        document.getElementById("id01").style.display = "block";
-                    }
-
-                    function closeForm() {
-                        document.getElementById("id01").style.display = "none";
-                    }
-
-                    saveInfo = () => {
-                        closeForm();
-                        const names = document.getElementById('names').value;
-                        myArray = names.split(/\r?\n/);
-                        console.log(names)
-                        console.log(myArray)
-                        document.getElementById("id01").style.display = "none";
-                        if (myArray.length !== 0) {
-                            const todosTemplate = myArray.map(t =>
-                                    '<tr>'+
-                                        '<td>' + t + '</td>' +
-                                        '<td>' + 0 + '</td>' +
-                                    '</tr>')
-                            tblDatos.innerHTML = (
-                                '<tr>'+
-                                '<th>'+
-                                    '<div class="col text-end" style="margin: 0px; width: 70%;">'+
-                                        '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
-                                    '</div>'+
-                                '</th>'+
-                                '<th>'+
-                                    "Definitiva"+
-                                '</th>'+
-                                '</tr>'+
-                                '<tr>'+
-                                    '<th onclick="sortTable(0)" style="cursor: pointer">'+
-                                        "Nombre de Estudiante"+
-                                    '</th>'+
-                                    '<th>'+
-                                        "100%"+
-                                    '</th>'+
-                                '</tr>'
-                            + todosTemplate.join(''));
-                        }
-                    }
-
-                    function insertarEstudiante() {
-                        var table = document.getElementById('tblDatos').insertRow(-1);
-
-                        var col1 = table.insertCell(0);
-                        col1.innerHTML = '<div contenteditable><input placeholder="Estudiante"></div>';
-
-                        var cols = document.getElementById('tblDatos').rows[2].cells.length;
-
-                        for (var i = 0; i < cols-2; i++)
-                        {
-                            let coln = table.insertCell(1);
-                            coln.innerHTML = '<div contenteditable><input placeholder="Nota"></div>';
-                        }
-
-                        var col3 = table.insertCell(-1);
-                        col3.innerHTML = '<div contenteditable><input placeholder="Definitiva"></div>';
-                    }
-
-                    function insertarNota() {
-                        var table = document.getElementById ('tblDatos');
-
-                        var rows = table.rows.length;
-                        var cols = document.getElementById('tblDatos').rows[2].cells.length;
-
-                        var firstRow = table.rows[0];
-                        var SecRow = table.rows[1];
-
-                        var cell1 = firstRow.insertCell (cols-1);
-                        var cell2 = SecRow.insertCell (cols-1);
-
-                        for (var i = 0; i < rows-2; i++)
-                        {
-                            const tmp = "Nota " + numNotes;
-                            cell1.innerHTML = tmp;
-                            cell2.innerHTML = '50%';
-
-                            var LstRow = table.rows[i+2];
-
-                            var celln = LstRow.insertCell (cols-1);
-
-                            const nota = "Nota" + i;
-
-                            celln.innerHTML = '<input type="text" id="note" placeholder=Nota style="width: 70px;"  maxlength="3">';
-                        }
-                        numNotes++
-                    }
-                    function sortTable(n) {
-                              var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-                              table = document.getElementById("tblDatos");
-
-                              switching = true;
-
-                              dir = "asc";
-
-                              while (switching) {
-
-                                    switching = false;
-                                    rows = table.rows;
-
-                                    for (i = 2; i < (rows.length - 1); i++) {
-
-                                      x = rows[i].getElementsByTagName("TD")[n];
-                                      y = rows[i + 1].getElementsByTagName("TD")[n];
-
-                                      if (dir == "asc") {
-                                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-
-                                          shouldSwitch = true;
-                                          break;
-                                        }
-                                      } else if (dir == "desc") {
-                                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-
-                                          shouldSwitch = true;
-                                          break;
-                                        }
-                                      }
-                                    }
-                                    if (shouldSwitch) {
-
-                                      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                                      switching = true;
-
-                                      switchcount ++;
-                                    } else {
-
-                                      if (switchcount == 0 && dir == "asc") {
-                                        dir = "desc";
-                                        switching = true;
-                                      }
-                                    }
-                                  }
-                            }
-                </script>
+                <table id="noEditable" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px; z-index:2;" class="table table-bordered table-hover align-middle"> 
+                </table>
             </div>
-
-
+        
         </div>
     <!-- <input type="button" class="btn-primary botones" onclick="insertarEstudiante()" value="Nuevo Estudiante" style="margin: 20px"> -->
     </div>
+    <script>
+
+        function edit() {
+            var checkBox = document.getElementById("btncheck1");
+            var btnStuden = document.getElementById("addStudents");
+            var btnNote = document.getElementById("newNote");
+            let editnote = document.getElementById("note");
+            var able = document.getElementById("tblDatos");
+            if (checkBox.checked == true){
+                btnStuden.style.display = "inline";
+                if (btnNote){
+                    btnNote.style.display = "flex";
+                    btnNote.style.margin = "0px";
+                }
+                if (editnote){
+                    editnote.disabled = false;
+                }
+                editable()
+
+            } else {
+                btnStuden.style.display = "none";
+                nonEditable();
+                saveNameNotes();
+                saveNotes();
+                updateFinalGrade();
+                console.log(estudiantes)
+                if (btnNote){
+                    btnNote.style.display = "none";
+                }
+                if (editnote){
+                    editnote.disabled = true;
+                }
+            }
+        }
+
+        function highLightFinalGrade(){
+            var checkBox1 = document.getElementById("btncheck2");
+            if (checkBox1.checked == true){
+                highLight();
+            }
+            else{
+                nohighLight();
+            }
+        }
+
+        var myArray = new Array()
+        var numNotes = 1;
+
+        function openForm() {
+            document.getElementById("id01").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("id01").style.display = "none";
+        }
+
+        var estudiantes = [];
+        var tipo_notas = [];
+
+        saveInfo = () => {
+            closeForm();
+            const names = document.getElementById('names').value;
+            myArray = names.split(/\r?\n/);
+            for (var i = 0; i < myArray.length; i++) {
+                text = myArray[i].split("-")
+                var temp = {}
+                temp["nombre"] = text[0].trim()
+                temp["di"] = text[1].trim()
+                temp["notas"] = [0]
+                temp["definitiva"] = 0
+                estudiantes.push(temp)
+            }
+
+            document.getElementById("id01").style.display = "none";
+            if (myArray.length !== 0) {
+                const todosTemplate = estudiantes.map(t =>
+                        '<tr>'+
+                            '<td>' + t["nombre"] + '</td>' +
+                            '<td>' + t["definitiva"] + '</td>' +
+                        '</tr>')
+                tblDatos.innerHTML = (
+                    '<tr>'+
+                    '<th>'+
+                        '<div class="col text-end" style="margin: 0px; width: 70%;">'+
+                            '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
+                        '</div>'+
+                    '</th>'+
+                    '<th>'+
+                        "Definitiva"+
+                    '</th>'+
+                    '</tr>'+
+                    '<tr>'+
+                        '<th onclick="sortTable(0)" style="cursor: pointer">'+
+                            "Nombre de Estudiante"+
+                        '</th>'+
+                        '<th>'+
+                            "100%"+
+                        '</th>'+
+                    '</tr>'
+                + todosTemplate.join(''));
+            }
+        }
+
+        function createNonEditableTable(){
+            noEditable.innerHTML = (
+                    '<tr>'+
+                    '<th>'+
+                        '<div class="col text-end" style="margin: 0px; width: 70%;">'+
+                            '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
+                        '</div>'+
+                    '</th>'+
+                    '<th>'+
+                        "Definitiva"+
+                    '</th>'+
+                    '</tr>'+
+                    '<tr>'+
+                        '<th onclick="sortTable(0)" style="cursor: pointer">'+
+                            "Nombre de Estudiante"+
+                        '</th>'+
+                        '<th>'+
+                            "100%"+
+                        '</th>'+
+                    '</tr>');
+        }
+
+        function insertarEstudiante() {
+            var table = document.getElementById('tblDatos').insertRow(-1);
+
+            var col1 = table.insertCell(0);
+            col1.innerHTML = '<div contenteditable><input placeholder="Estudiante"></div>';
+
+            var cols = document.getElementById('tblDatos').rows[2].cells.length;
+
+            for (var i = 0; i < cols-2; i++)
+            {
+                let coln = table.insertCell(1);
+                coln.innerHTML = '<div contenteditable><input placeholder="Nota"></div>';
+            }
+
+            var col3 = table.insertCell(-1);
+            col3.innerHTML = '<div contenteditable><input placeholder="Definitiva"></div>';
+        }
+
+        function insertarNota() {
+            var table = document.getElementById ('tblDatos');
+
+            var rows = table.rows.length;
+            var cols = document.getElementById('tblDatos').rows[2].cells.length;
+
+            var firstRow = table.rows[0];
+            var SecRow = table.rows[1];
+
+            var cell1 = firstRow.insertCell (cols-1);
+            var cell2 = SecRow.insertCell (cols-1);
+
+            for (var i = 0; i < rows-2; i++)
+            {
+                const tmp = "Nota " + numNotes;
+                cell1.innerHTML = '<input type="text" id="noteName" placeholder="Nombre Nota" style="width: 200px;">';
+                //cell2.innerHTML = '50%';
+
+                var LstRow = table.rows[i+2];
+
+                var celln = LstRow.insertCell (cols-1);
+
+                const nota = "Nota" + i;
+
+                celln.innerHTML = '<input type="text" id="note" placeholder=Nota style="width: 70px;"  maxlength="3">';
+            }
+            numNotes++
+        }
+
+        function saveNameNotes(){
+
+            var table = document.getElementById ('tblDatos');
+
+            var rows = table.rows.length;
+
+            for (var i = 1; i < numNotes; i++)
+            {
+                var type_Note = table.rows[0].cells[i].children[0].value;
+                tipo_notas.push(type_Note);
+            }
+        }
+
+        function saveNotes(){
+
+            var table = document.getElementById ('tblDatos');
+
+            var rows = table.rows.length;
+            var cols = document.getElementById('tblDatos').rows[2].cells.length;
+            
+            
+            for(var i = 2; i < rows; i++){
+                var tempName = table.rows[i].children[0].innerHTML;
+                var notas = [];
+                for(var j = 1; j < cols-1; j++){
+                    var nota = table.rows[i].cells[j].children[0].value;
+                    notas.push(nota);
+                }
+                console.log(notas)
+                var def = calculateFinalGrade(notas);
+                
+                for(var t = 0; t<estudiantes.length; t++){
+                    if (estudiantes[t]["nombre"] == tempName){
+                        estudiantes[t]["notas"] = notas;
+                        estudiantes[t]["definitiva"] = def;
+                    }
+                }              
+            }
+
+        }
+
+        function calculateFinalGrade(notas){
+
+            var sum = 0
+            
+            for(var t = 0; t<notas.length; t++){
+                sum+= parseFloat(notas[t])
+            }    
+
+            return sum/notas.length;
+
+        }
+
+        function nonEditable(){
+
+            if (estudiantes.length > 0){
+                var table = document.getElementById ('tblDatos');
+
+                var rows = table.rows.length;
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                
+                for (var i = 1; i < numNotes; i++)
+                {
+                    if(table.rows[0].cells[i].children[0].value == ""){
+                        table.rows[0].cells[i].children[0].value = "Nota " + i;
+                    }
+                    table.rows[0].cells[i].children[0].setAttribute("readonly", "true"); 
+                }         
+
+                for(var i = 2; i < rows; i++){
+                    for(var j = 1; j < cols-1; j++){
+                        if(table.rows[i].cells[j].children[0].value == ""){
+                            table.rows[i].cells[j].children[0].value = 0;
+                        }
+                        table.rows[i].cells[j].children[0].setAttribute("readonly", "true");
+                    }        
+                }
+            }
+        }
+
+        function updateFinalGrade(){
+
+            var table = document.getElementById ('tblDatos');
+
+            var rows = table.rows.length;
+            var cols = document.getElementById('tblDatos').rows[2].cells.length;
+            
+            
+            for(var i = 2; i < rows; i++){ 
+
+                var tempName = table.rows[i].children[0].innerHTML;
+                for(var t = 0; t<estudiantes.length; t++){
+                    if (estudiantes[t]["nombre"] == tempName){
+                        table.rows[i].cells[cols-1].innerHTML = estudiantes[t]["definitiva"]
+                    }
+                }          
+            }
+
+        }
+
+        function editable(){
+
+            if (estudiantes.length > 0){
+                var table = document.getElementById ('tblDatos');
+
+                var rows = table.rows.length;
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                
+                
+                for (var i = 1; i < numNotes; i++)
+                {
+                    table.rows[0].cells[i].children[0].removeAttribute("readonly") 
+                }
+                        
+
+                for(var i = 2; i < rows; i++){
+                    for(var j = 1; j < cols-1; j++){
+                        table.rows[i].cells[j].children[0].removeAttribute("readonly");
+                    }            
+                }
+            }
+
+            
+        }
+
+        function highLight(){
+            var table = document.getElementById ('tblDatos');
+
+            var rows = table.rows.length;
+            var cols = document.getElementById('tblDatos').rows[2].cells.length;
+            
+            
+            for(var i = 2; i < rows; i++){ 
+
+                if (table.rows[i].cells[cols-1].innerHTML < 3){
+                    table.rows[i].cells[cols-1].style.color = "black";
+                    table.rows[i].cells[cols-1].style.backgroundColor = "#F6A7A7";
+                }
+                else{
+                    table.rows[i].cells[cols-1].style.color = "black";
+                    table.rows[i].cells[cols-1].style.backgroundColor = "#CBF6A7";
+                }       
+            }
+        }
+
+        function nohighLight(){
+            var table = document.getElementById ('tblDatos');
+
+            var rows = table.rows.length;
+            var cols = document.getElementById('tblDatos').rows[2].cells.length;
+            
+            
+            for(var i = 2; i < rows; i++){ 
+
+                var tempName = table.rows[i].children[0].innerHTML;
+                for(var t = 0; t<estudiantes.length; t++){
+                    if (estudiantes[t]["nombre"] == tempName){
+                        table.rows[i].cells[cols-1].style.color = "black";
+                        table.rows[i].cells[cols-1].style.backgroundColor = "white"; 
+                    }
+                }          
+            }
+        }
+
+
+
+        function sortTable(n) {
+                  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                  table = document.getElementById("tblDatos");
+
+                  switching = true;
+
+                  dir = "asc";
+
+                  while (switching) {
+
+                        switching = false;
+                        rows = table.rows;
+
+                        for (i = 2; i < (rows.length - 1); i++) {
+
+                          x = rows[i].getElementsByTagName("TD")[n];
+                          y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                          if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                              shouldSwitch = true;
+                              break;
+                            }
+                          } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+
+                              shouldSwitch = true;
+                              break;
+                            }
+                          }
+                        }
+                        if (shouldSwitch) {
+
+                          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                          switching = true;
+
+                          switchcount ++;
+                        } else {
+
+                          if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                          }
+                        }
+                      }
+                }
+    </script>
 </div>
 {% endblock %}
