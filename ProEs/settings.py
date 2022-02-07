@@ -88,7 +88,7 @@ DATABASES = {
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
                 'host': "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.rtlur.mongodb.net/retryWrites=true&w=majority"
-        }
+        } 
 
     }
 }
@@ -141,7 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #for login and others
 
-#DEFAULT_FROM_EMAIL = "losmejoresdeingesoft@gmail.com"
+DEFAULT_FROM_EMAIL = "ProEs <losmejoresdeingesoft@gmail.com>"
 
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('courses')
