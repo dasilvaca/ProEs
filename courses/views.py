@@ -54,12 +54,13 @@ def Spreadsheet(request, id):
     db = connect("proesCol")
     query = {"_id":ObjectId(id)}
     salida= db.find(query)[0]
-    
+    salida["id"] = str(salida["_id"])
+    '''
     if tipo_notas != salida["tipo_notas"]:
         db.update_one(query,{"$set":{"tipo_notas":tipo_notas}})
     if estudiantes != salida["estudiantes"]:
         db.update_one(query,{"$set":{"estudiantes":estudiantes}})
-
     salida = db.find(query)[0]
     salida["id"] = str(salida["_id"])
+    '''
     return render(request, "courses/spreadsheet.html",{"contexto":salida})   # "about.html"
