@@ -11,6 +11,9 @@ from django.contrib.auth.decorators import login_required
 from utils import *
 from bson import ObjectId
 
+#Cast from str to array
+from ast import literal_eval
+
 # Create your views here.
 
 @login_required
@@ -57,20 +60,13 @@ def Spreadsheet(request, id):
     salida= db.find(query)[0]
 
     if request.method == 'POST':
-        estudiantes = request.POST['estudiantes']
-        tipo_notas = request.POST['tipo_notas']
-        print(estudiantes)
-        print(tipo_notas)
-
-    try:
+        estudiantes = literal_eval(request.POST['estudiantes'])
+        tipo_notas = literal_eval(request.POST['tipo_notas'])
         if tipo_notas != salida["tipo_notas"]:
             db.update_one(query,{"$set":{"tipo_notas":tipo_notas}})
         if estudiantes != salida["estudiantes"]:
             db.update_one(query,{"$set":{"estudiantes":estudiantes}})
-        query = {"_id":ObjectId(id)}
-        salida["id"] = str(salida["_id"])
-    except:
-        salida["id"] = str(salida["_id"])
-
-
+        salida= db.find(query)[0]
+    
+    salida["id"] = str(salida["_id"])
     return render(request, "courses/spreadsheet.html",{"contexto":salida})   # "about.html"
