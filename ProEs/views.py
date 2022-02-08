@@ -11,8 +11,12 @@ class Home(TemplateView):
     template_name = 'ProEs/home.html'
 
 
-class LoginStudents(TemplateView):
-    template_name = 'ProEs/login_students.html'
+def LoginStudents(request):
+
+    if request.method == 'POST':
+        di = request.POST["di"]
+
+    render(request,'ProEs/login_students.html')
 
 
 class Notes(TemplateView):
