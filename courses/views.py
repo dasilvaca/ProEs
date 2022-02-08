@@ -1,3 +1,6 @@
+import json
+
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -48,12 +51,17 @@ def NewCourse(request):
 @login_required
 def Spreadsheet(request, id):
     #tipo_notas y estudiantes es lo que se va a recibir del spreedsheet
-    tipo_notas = []
-    estudiantes = {}
 
     db = connect("proesCol")
     query = {"_id":ObjectId(id)}
     salida= db.find(query)[0]
+
+    if request.method == 'POST':
+        estudiantes = request.POST['estudiantes']
+        tipo_notas = request.POST['tipo_notas']
+        print(estudiantes)
+        print(tipo_notas)
+
     try:
         if tipo_notas != salida["tipo_notas"]:
             db.update_one(query,{"$set":{"tipo_notas":tipo_notas}})
@@ -63,4 +71,6 @@ def Spreadsheet(request, id):
         salida["id"] = str(salida["_id"])
     except:
         salida["id"] = str(salida["_id"])
+
+
     return render(request, "courses/spreadsheet.html",{"contexto":salida})   # "about.html"
