@@ -86,8 +86,8 @@
                 <h1 id="form-title" style="margin: 10px">{{contexto.asignatura.nombre}}</h1>
             </div>
             <!--        <div class="col-8"></div>-->
-            <div class="col text-end">
-                {{contexto.profesor}}
+            <div class="col text-end" style="color: blueviolet">
+                <h5>{{request.user.first_name}}</h5>
             </div>
             <a id = "ID" style="display: none;">{{contexto.id}}</a>
         </div>
