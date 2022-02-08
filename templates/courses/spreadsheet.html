@@ -79,6 +79,7 @@
         }
 
     </style>
+    {% csrf_token %}
     <header style="padding: 20px">
         <div class="row">
             <div class=<div class="col-12 col-lg-10 d-flex justify-content-start" style="float: left; clear: both; text-align: left">
@@ -88,11 +89,12 @@
             <div class="col text-end">
                 {{contexto.profesor}}
             </div>
+            <a id = "ID" style="display: none;">{{contexto.id}}</a>
         </div>
     </header>
 
     <div>
-        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="edit()">
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="edit()" method="POST">
         <label style="width:auto; margin-left: 40px; border-radius: 8px; padding: 10px; " class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label>
         <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" onclick="highLightFinalGrade()">
         <label style="width:auto; margin-left: 10px; border-radius: 8px; padding: 10px; " class="btn btn-outline-success" for="btncheck2">Definitivas</label>
@@ -129,7 +131,7 @@
     <!-- <input type="button" class="btn-primary botones" onclick="insertarEstudiante()" value="Nuevo Estudiante" style="margin: 20px"> -->
     </div>
     <script>
-
+        var id = document.getElementById("ID").innerHTML;
         function edit() {
             var checkBox = document.getElementById("btncheck1");
             var btnStuden = document.getElementById("addStudents");
@@ -150,17 +152,53 @@
             } else {
                 btnStuden.style.display = "none";
                 nonEditable();
-                saveNameNotes();
-                saveNotes();
-                updateFinalGrade();
-                console.log(estudiantes)
+                if(estudiantes.length>0){
+                    saveNameNotes();
+                    saveNotes();
+                    updateFinalGrade();
+                }
+
+                var token = getCookie('csrftoken');
+
+                var request = new XMLHttpRequest();
+                request.open('POST', "/courses/spreadsheet/"+id+"/");
+
+                const header = "X-CSRFToken";
+
+                request.setRequestHeader(header, token);
+
+                const dataEst = new FormData();
+                dataEst.append('estudiantes', JSON.stringify(estudiantes));
+                dataEst.append('tipo_notas', JSON.stringify(tipo_notas));
+
+                request.send(dataEst);
+
+
                 if (btnNote){
                     btnNote.style.display = "none";
                 }
                 if (editnote){
                     editnote.disabled = true;
                 }
+
+
             }
+        }
+        function getCookie(name) {
+
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            //RETORNANDO EL TOKEN
+            return cookieValue;
         }
 
         function highLightFinalGrade(){
