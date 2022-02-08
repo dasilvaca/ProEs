@@ -129,7 +129,15 @@
         
         </div>
     <!-- <input type="button" class="btn-primary botones" onclick="insertarEstudiante()" value="Nuevo Estudiante" style="margin: 20px"> -->
+         <div id="left-chevron-container" style="bottom: 0; position: fixed; height: 120px">
+            <a id="back-link" href="#" onclick="history.go(-1)">
+                <?php $_SESSION('last_page') = request_uri(); ?>
+                <i class="bi bi-chevron-left go-back-chevron-button" id="users-go-back"></i>
+            </a>
+
+        </div>
     </div>
+
     <script>
         var id = document.getElementById("ID").innerHTML;
         function edit() {
