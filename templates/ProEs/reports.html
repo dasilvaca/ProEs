@@ -6,11 +6,38 @@
 {%endblock%}
 
 {% block content %}
+{{contexto}}
     <div class="container " style="margin: 0">
-        <center>
+        <div class="row">
+            <center>
 
-            <img src="{{icon}}" alt="Logo" width="250" class="mx-auto">
-        </center>
-        {{contexto}}
+                <img src="{{icon}}" alt="Logo" width="250" class="mx-auto">
+            </center>
+        </div>
+        <div class="row">
+            <h1>Docente : {{Docente}}</h1>
+            <p>Bye2.0 xd</p>
+        </div>
+        <div class="row" style="color: blueviolet">
+ <table>
+  <tr style="padding: 5px; border-style: solid">
+    <td><h2>Company</h2></td>
+    <td>Contact</td>
+    <td>Country</td>
+  </tr>
+     <hr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+</table>
+        </div>
     </div>
+
 {% endblock %}
