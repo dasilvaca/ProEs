@@ -8,13 +8,14 @@
 {% block home_content %}
     <div class="col-12 col-md-7 mt-5">
         <form method="POST">
+            {% csrf_token %}
             <div class="form-group">
-                <input type="text" class="form-control " id="Input_Studend_ID" name="di" placeholder="Digita tu numero de identificación">
+                <input type="text" class="form-control " id="text" name="di" placeholder="Digita tu numero de identificación">
             </div>
 {#            Cambiar el tipo de botton a submit cuando sea requerido#}
             <a href = "/notes" style="text-decoration: none; border: none">
                 <div class="d-grid" style="border: none">
-                    <input class="btn-primary mt-4 botones" type="submmit" value="Consultar mis notas" style="border: none"/>
+                    <input class="btn-primary mt-4 botones" type="submit" value="Consultar mis notas" style="border: none"/>
                 </div>
             </a>
         </form>

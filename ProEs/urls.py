@@ -33,7 +33,7 @@ urlpatterns = [
     path('courses/', include('courses.urls'), name='courses'),
 
     path('', local_views.Home.as_view(), name = 'home'),
-    path('students', local_views.LoginStudents.as_view(), name = 'login_students'),
+    path('students', local_views.LoginStudents, name = 'login_students'),
     path('notes', local_views.Notes.as_view(), name = 'notes'),
 
     #Links for login and others
