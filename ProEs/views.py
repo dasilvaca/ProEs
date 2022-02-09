@@ -16,20 +16,36 @@ class Home(TemplateView):
 
 def LoginStudents(request):
     if request.method == 'POST':
-        salidaArr = []
+        salidaArr1 = []
         di = request.POST["di"]
         db = connect("proesCol")
         query ={"estudiantes.di":di}
         salida = db.find(query,{"_id":0})
         for i in range(salida.count()):
-            salidaArr.append(salida[i])
+            salidaArr1.append(salida[i])
             estudiantesList = salida[i]["estudiantes"]
             aux = {}
             for j in estudiantesList:
                 if j["di"] ==di:
                     aux=j
-            salidaArr[i]["estudiantes"] = aux
-        return render(request,'ProEs/notes.html',{"contexto":salidaArr})    
+            salidaArr1[i]["estudiantes"] = aux
+        salidaArr2 = []
+        for i in range(len(salidaArr1)):
+            general_dict={
+                "di":salidaArr1[i]["estudiantes"]["di"],
+                "asignatura": salidaArr1[i]["asignatura"],
+            }
+            arrNotas = []
+            
+            for j in range(len(salidaArr1[i]["tipo_notas"])):
+                arrNotas.append({
+                    "tipo":salidaArr1[i]["tipo_notas"][j],
+                    "nota":int(salidaArr1[i]["estudiantes"]["notas"][j])
+                })
+            general_dict["notas"]=arrNotas
+            general_dict["definitiva"]=salidaArr1[i]["estudiantes"]["definitiva"]
+            salidaArr2.append(general_dict)  
+        return render(request,'ProEs/notes.html',{"contexto":salidaArr2})    
     return render(request,'ProEs/login_students.html')
 
 
