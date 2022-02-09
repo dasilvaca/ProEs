@@ -57,7 +57,7 @@ margin: 20px auto 0 auto;"></div>
                         </a>
                     </div>
                     <div class="col-12 col-lg-2">
-                        <a data-bs-toggle="modal" data-bs-target="#{{materia.asignatura.nombre}}" class="btn"
+                        <a data-bs-toggle="modal" data-bs-target="#d{{materia.id}}" class="btn"
                            style="background-color: #5112d9; border-color: #5112d9; color: white;">
                             <i class="bi bi-three-dots-vertical"></i></a>
                     </div>
@@ -76,7 +76,7 @@ margin: 20px auto 0 auto;"></div>
         </div>
     </div>
 
-    <div class="modal fade" id="{{materia.asignatura.nombre}}" tabindex="-1" aria-labelledby="modificarasignatura"
+    <div class="modal fade" id="d{{materia.id}}" tabindex="-1" aria-labelledby="modificarasignatura"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -86,7 +86,7 @@ margin: 20px auto 0 auto;"></div>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label" style="font-family: 'Inter', sans-serif">Nombre
                                 asignatura: {{materia.asignatura.nombre}}</label>
-                            <input type="text" class="form-control" id="recipient-name" placeholder="Nombre asignatura" name="nuevonombre">
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Nombre asignatura" name="nuevo_nombre">
                             <input type="text" class="form-control" name="id_materia" value="{{materia.id}}" style="display: none;">
                         </div>
                         <div class="modal-footer">
@@ -94,7 +94,7 @@ margin: 20px auto 0 auto;"></div>
                             <div class="d-grid gap-2 col-6 mx-auto">
                                  <a href="{% url 'delete_course' id=materia.id%}" class="btn btn-dark">Eliminar</a>
                                 <input type="submit" class="btn btn-primary" value="Guardar"></input>
-                                <button type="button" class="btn btn-secondary" >Cancelar</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </form>

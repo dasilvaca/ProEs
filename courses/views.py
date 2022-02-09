@@ -17,25 +17,33 @@ from ast import literal_eval
 # Create your views here.
 
 def delete_course(request, id):
+    db = connect("proesCol")
+
+    query = {"_id": ObjectId(id)}
+    print(query)
+    db.delete_one(query)
     return redirect('courses')
 
 @login_required
 def Courses(request):
     # Para saber las asignaturas de un profesor
+    db = connect("proesCol")
+    if request.method == 'POST':
+        #"""""
+        my_id = request.POST["id_materia"]
+        nuevo_nombre = request.POST["nuevo_nombre"]
+        query = {"_id": ObjectId(my_id)}
+
+        new_values = {"$set":{"asignatura.nombre":nuevo_nombre}}
+        db.update_one(query, new_values)
+        #"""
+        return redirect('courses')
     profesor = request.user.username
     asignaturas = []
-    db = connect("proesCol")
-    salida = db.find({"profesor":profesor},{"asignatura.nombre":1})
+    salida = db.find({"profesor": profesor}, {"asignatura.nombre": 1})
     for x in salida:
-        x["id"]=str(x["_id"])
+        x["id"] = str(x["_id"])
         asignaturas.append(x)
-    if request.method == 'POST':
-        my_id = request.POST["id_materia"]
-        query = {"_id": ObjectId(my_id)}
-        materia = db.find({"_id" : query})
-        salida = db.find(query)[0]
-        print(salida)
-        return redirect('courses')
     return render(request, "courses/courses.html", {"contexto": asignaturas})  # "about.html"
 
 
