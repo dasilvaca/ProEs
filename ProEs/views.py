@@ -67,7 +67,7 @@ def reports(request, username, id):
     context = {
         'icon': '{}{}'.format(settings.BASE_DIR, '/static/common/logos/2.png'),
         'contexto':salida,
-        'Docente': username
+        'docente': username
     }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')
