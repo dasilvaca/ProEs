@@ -81,20 +81,23 @@ margin: 20px auto 0 auto;"></div>
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
-                    <form>
+                    <form method="POST">
+                        {% csrf_token %}
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label" style="font-family: 'Inter', sans-serif">Nombre
                                 asignatura: {{materia.asignatura.nombre}}</label>
-                            <input type="text" class="form-control" id="recipient-name" placeholder="Nombre asignatura">
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Nombre asignatura" name="nuevonombre">
+                            <input type="text" class="form-control" name="id_materia" value="{{materia.id}}" style="display: none;">
+                        </div>
+                        <div class="modal-footer">
+
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                 <a href="{% url 'delete_course' id=materia.id%}" class="btn btn-dark">Eliminar</a>
+                                <input type="submit" class="btn btn-primary" value="Guardar"></input>
+                                <button type="button" class="btn btn-secondary" >Cancelar</button>
+                            </div>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <div class="d-grid gap-2 col-6 mx-auto">
-                        <button type="button" class="btn btn-dark">Eliminar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
                 </div>
             </div>
         </div>

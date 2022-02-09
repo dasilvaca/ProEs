@@ -12,4 +12,5 @@ urlpatterns = [
     path("topbest", views.TopBest, name = "topbest"),
     path("newcourse", views.NewCourse, name = "newcourse"),
     path("spreadsheet/<str:id>/", views.Spreadsheet, name = "spreadsheet"),
+    path("delete_course/<str:id>/", views.delete_course, name = "delete_course"),
 ]

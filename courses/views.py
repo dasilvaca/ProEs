@@ -16,6 +16,9 @@ from ast import literal_eval
 
 # Create your views here.
 
+def delete_course(request, id):
+    return redirect('courses')
+
 @login_required
 def Courses(request):
     # Para saber las asignaturas de un profesor
@@ -26,6 +29,13 @@ def Courses(request):
     for x in salida:
         x["id"]=str(x["_id"])
         asignaturas.append(x)
+    if request.method == 'POST':
+        my_id = request.POST["id_materia"]
+        query = {"_id": ObjectId(my_id)}
+        materia = db.find({"_id" : query})
+        salida = db.find(query)[0]
+        print(salida)
+        return redirect('courses')
     return render(request, "courses/courses.html", {"contexto": asignaturas})  # "about.html"
 
 
