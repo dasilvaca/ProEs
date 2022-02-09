@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 #Para conectarse a mongoDB desde python
 from utils import *
 from bson import ObjectId
-
+import pymongo
 #Cast from str to array
 from ast import literal_eval
 
@@ -29,12 +29,40 @@ def Courses(request):
     return render(request, "courses/courses.html", {"contexto": asignaturas})  # "about.html"
 
 
-class TopWorst(LoginRequiredMixin, TemplateView):
-    template_name = "courses/topworst.html"  # "about.html"
+def TopWorst(request):
+    #se debe recibir un id en el argumento, cuando esté listo se debe borrar el id de abajo
+    #Solo funciona por ahora con una sola materia
+    id = '6201dd30cf634ef49138dec8'
+    db = connect("proesCol")
+    salida = db.find_one({"_id":ObjectId(id)},{"estudiantes":1,"_id":0})["estudiantes"]
+
+    ordered = sorted(salida, key=lambda d: d['definitiva'])
+    salidaArr=[]
+    
+    if len(ordered)> 3:
+        salidaArr=[ordered[0],ordered[1],ordered[2]]
+    else:
+        for i in range(len(ordered)):
+            salidaArr.append(ordered[i])
+    return render(request,"courses/topworst.html",{"contexto":salidaArr})  # "about.html"
 
 
-class TopBest(LoginRequiredMixin, TemplateView):
-    template_name = "courses/topbest.html"  # "about.html"
+def TopBest(request):
+    #se debe recibir un id en el argumento, cuando esté listo se debe borrar el id de abajo
+    #Solo funciona por ahora con una sola materia
+    id = '6201dd30cf634ef49138dec8'
+    db = connect("proesCol")
+    salida = db.find_one({"_id":ObjectId(id)},{"estudiantes":1,"_id":0})["estudiantes"]
+    
+    ordered = sorted(salida, key=lambda d: d['definitiva'], reverse=True)
+    salidaArr=[]
+
+    if len(ordered)> 3:
+        salidaArr=[ordered[0],ordered[1],ordered[2]]
+    else:
+        for i in range(len(ordered)):
+            salidaArr.append(ordered[i])
+    return render(request,"courses/topbest.html",{"contexto":salidaArr})  # "about.html"
 
 @login_required
 def NewCourse(request):
