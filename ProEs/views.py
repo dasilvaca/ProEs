@@ -25,7 +25,7 @@ from django.contrib.staticfiles import finders
 class Home(TemplateView):
     template_name = 'ProEs/home.html'
 
-def reports(request, id):
+def reports(request, username, id):
 
     def link_callback(uri, rel):
         """
@@ -66,7 +66,8 @@ def reports(request, id):
 
     context = {
         'icon': '{}{}'.format(settings.BASE_DIR, '/static/common/logos/2.png'),
-        'contexto':salida
+        'contexto':salida,
+        'Docente': username
     }
     # Create a Django response object, and specify content_type as pdf
     response = HttpResponse(content_type='application/pdf')

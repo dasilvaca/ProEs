@@ -125,3 +125,7 @@ div {
     top: 25vh;
     text-align: left;
 }
+
+table, td{
+    border: 1px solid black;
+}

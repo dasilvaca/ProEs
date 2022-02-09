@@ -35,7 +35,7 @@ urlpatterns = [
     path('', local_views.Home.as_view(), name = 'home'),
     path('students', local_views.LoginStudents, name = 'login_students'),
     path('notes', local_views.Notes.as_view(), name = 'notes'),
-    path('reports/<str:id>/', local_views.reports, name = 'reports'),
+    path('reports/<str:username>/<str:id>/', local_views.reports, name = 'reports'),
 
     #Links for login and others
     
