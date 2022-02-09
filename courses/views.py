@@ -39,10 +39,10 @@ def Courses(request):
     return render(request, "courses/courses.html", {"contexto": asignaturas})  # "about.html"
 
 
-def TopWorst(request):
+def TopWorst(request, id):
     #se debe recibir un id en el argumento, cuando esté listo se debe borrar el id de abajo
     #Solo funciona por ahora con una sola materia
-    id = '6201dd30cf634ef49138dec8'
+    # id = '6201dd30cf634ef49138dec8'
     db = connect("proesCol")
     salida = db.find_one({"_id":ObjectId(id)},{"estudiantes":1,"_id":0})["estudiantes"]
 
@@ -57,10 +57,10 @@ def TopWorst(request):
     return render(request,"courses/topworst.html",{"contexto":salidaArr})  # "about.html"
 
 
-def TopBest(request):
+def TopBest(request, id):
     #se debe recibir un id en el argumento, cuando esté listo se debe borrar el id de abajo
     #Solo funciona por ahora con una sola materia
-    id = '6201dd30cf634ef49138dec8'
+    # id = '6201dd30cf634ef49138dec8'
     db = connect("proesCol")
     salida = db.find_one({"_id":ObjectId(id)},{"estudiantes":1,"_id":0})["estudiantes"]
     
