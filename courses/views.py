@@ -62,7 +62,7 @@ def TopBest(request):
     else:
         for i in range(len(ordered)):
             salidaArr.append(ordered[i])
-    return render(request,"courses/topbest.html")  # "about.html"
+    return render(request,"courses/topbest.html",{"contexto":salidaArr})  # "about.html"
 
 @login_required
 def NewCourse(request):
