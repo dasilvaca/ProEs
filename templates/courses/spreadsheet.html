@@ -7,542 +7,682 @@
 
 {% block white_base %}
 
-<div class="container-flex" style="margin: 0px; padding: 0px">
-    <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
-
-        /* The Modal (background) */
-        .modal {
-        display: none; /* Hidden by default */
-        justify-content:center;
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        padding-top: 60px;
-        }
-        /* Modal Content/Box */
-        .modal-content {
-        background-color: rgb(255, 255, 255);
-        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-        border: 1px solid #5C00FA;
-        width: 50%;
-        }
-
-        /* Add Zoom Animation */
-        .animate {
-        -webkit-animation: animatezoom 0.6s;
-        animation: animatezoom 0.6s
-        }
-
-        @-webkit-keyframes animatezoom {
-        from {-webkit-transform: scale(0)}
-        to {-webkit-transform: scale(1)}
-        }
-
-        @keyframes animatezoom {
-        from {transform: scale(0)}
-        to {transform: scale(1)}
-        }
-
-        input{
-        background-color: #ffffff;
-        border: 1px solid rgb(0, 0, 0);
-        border-radius: 3px;
-        color: rgb(0, 0, 0);
-        }
-
-        section {
-        max-height: 250px;
-        padding: 1rem;
-        overflow-y: auto;
-        scrollbar-color: #d4aa70 #e4e4e4;
-        }
-
-        .section::-webkit-scrollbar {
-        width: 20px;
-        }
-
-        .section::-webkit-scrollbar-track {
-        background-color: #e4e4e4;
-        border-radius: 100px;
-        }
-
-        .section::-webkit-scrollbar-thumb {
-        border-radius: 100px;
-        border: 5px solid transparent;
-        background-clip: content-box;
-        background-image: linear-gradient(180deg, #c52eea 0%, hsl(247, 100%, 19%) 100%);
-        }
-
-    </style>
-    {% csrf_token %}
-    <header style="padding: 20px">
-        <div class="row">
-            <div class=<div class="col-12 col-lg-10 d-flex justify-content-start" style="float: left; clear: both; text-align: left">
-                <h1 id="form-title" style="margin: 10px">{{contexto.asignatura.nombre}}</h1>
+<body onload="main()">
+    <div class="container-flex" style="margin: 0px; padding: 0px">
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+    
+            /* The Modal (background) */
+            .modal {
+            display: none; /* Hidden by default */
+            justify-content:center;
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            padding-top: 60px;
+            }
+            /* Modal Content/Box */
+            .modal-content {
+            background-color: rgb(255, 255, 255);
+            margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #5C00FA;
+            width: 50%;
+            }
+    
+            /* Add Zoom Animation */
+            .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+            }
+    
+            @-webkit-keyframes animatezoom {
+            from {-webkit-transform: scale(0)}
+            to {-webkit-transform: scale(1)}
+            }
+    
+            @keyframes animatezoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+            }
+    
+            input{
+            background-color: #ffffff;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 3px;
+            color: rgb(0, 0, 0);
+            }
+    
+            section {
+            max-height: 250px;
+            padding: 1rem;
+            overflow-y: auto;
+            scrollbar-color: #d4aa70 #e4e4e4;
+            }
+    
+            .section::-webkit-scrollbar {
+            width: 20px;
+            }
+    
+            .section::-webkit-scrollbar-track {
+            background-color: #e4e4e4;
+            border-radius: 100px;
+            }
+    
+            .section::-webkit-scrollbar-thumb {
+            border-radius: 100px;
+            border: 5px solid transparent;
+            background-clip: content-box;
+            background-image: linear-gradient(180deg, #c52eea 0%, hsl(247, 100%, 19%) 100%);
+            }
+    
+        </style>
+        {% csrf_token %}
+        <header style="padding: 20px">
+            <div class="row">
+                <div class=<div class="col-12 col-lg-10 d-flex justify-content-start" style="float: left; clear: both; text-align: left">
+                    <h1 id="form-title" style="margin: 10px">{{contexto.asignatura.nombre}}</h1>
+                </div>
+                <!--        <div class="col-8"></div>-->
+                <div class="col text-end" style="color: blueviolet">
+                    <h5>{{request.user.first_name}}</h5>
+                </div>
+                <a id = "ID" style="display: none;">{{contexto.id}}</a>
+                <a id = "estudiantes" style="display: none;">{{contexto.estudiantes}}</a>
+                <a id = "tipo_notas" style="display: none;">{{contexto.tipo_notas}}</a>
+                <a id = "asignatura" style="display: none;">{{contexto.asignatura}}</a>
             </div>
-            <!--        <div class="col-8"></div>-->
-            <div class="col text-end" style="color: blueviolet">
-                <h5>{{request.user.first_name}}</h5>
-            </div>
-            <a id = "ID" style="display: none;">{{contexto.id}}</a>
-            <a >{{contexto.estudiantes}}</a>
+        </header>
+    
+        <div>
+            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="edit()" method="POST">
+            <label style="width:auto; margin-left: 40px; border-radius: 8px; padding: 10px; " class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label>
+            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" onclick="highLightFinalGrade()">
+            <label style="width:auto; margin-left: 10px; border-radius: 8px; padding: 10px; " class="btn btn-outline-success" for="btncheck2">Definitivas</label>
+            <button id="addStudents" onclick="openForm()" style="width:auto; margin: 10px; display:none"  type="button" class="btn-primary botones">Estudiantes</button>
         </div>
-    </header>
-
-    <div>
-        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="edit()" method="POST">
-        <label style="width:auto; margin-left: 40px; border-radius: 8px; padding: 10px; " class="btn btn-outline-warning" for="btncheck1">Editar Planilla</label>
-        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" onclick="highLightFinalGrade()">
-        <label style="width:auto; margin-left: 10px; border-radius: 8px; padding: 10px; " class="btn btn-outline-success" for="btncheck2">Definitivas</label>
-        <button id="addStudents" onclick="openForm()" style="width:auto; margin: 10px; display:none"  type="button" class="btn-primary botones">Estudiantes</button>
-    </div>
-    <div id="id01" class="modal">
-        <form class="modal-content animate" action="/action_page.php" method="post">
-            <div class="imgcontainer d-grid gap-2 d-md-flex justify-content-md-end" style="padding: 0px;">
-                <button onclick="closeForm(); return false" class="btn-close" title="Close Modal" aria-label="Close" style="margin: 15px 15px;"></button>
-            </div>
-
-            <div class="container">
-                <label><h3>Estudiantes</h3></label>
-                <p>El formato es: "Nombre" - "documento de identidad", ejemplo:</p>
-                <p>Rafael Romero - 100032434</p>
-                <p>Recuerde que los estudiantes deben estar separados por un salto de linea.</p>
-                <textarea class="form-control" placeholder="Ingrese los estudiantes..." rows="15" id='names'></textarea>
-                <button  type="button" class="btn-primary botones" onclick="saveInfo(); return false" style="margin: 10px 0px 15px 0px;">Guardar</button>
-            </div>
-        </form>
-    </div>
-    <div style="overflow:scroll;height:610px;margin-right:10px; margin-left: 10px;" class="section">
-        <div class="row">
-            <div class="col" style="margin: 20px; width: 80%">
-
-                <table id="tblDatos" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px; z-index:2;" class="table table-bordered table-hover align-middle"> 
-                </table>
-
-                <table id="noEditable" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px; z-index:2;" class="table table-bordered table-hover align-middle"> 
-                </table>
-            </div>
-        
+        <div id="id01" class="modal">
+            <form class="modal-content animate" action="/action_page.php" method="post">
+                <div class="imgcontainer d-grid gap-2 d-md-flex justify-content-md-end" style="padding: 0px;">
+                    <button onclick="closeForm(); return false" class="btn-close" title="Close Modal" aria-label="Close" style="margin: 15px 15px;"></button>
+                </div>
+    
+                <div class="container">
+                    <label><h3>Estudiantes</h3></label>
+                    <p>El formato es: "Nombre" - "documento de identidad", ejemplo:</p>
+                    <p>Rafael Romero - 100032434</p>
+                    <p>Recuerde que los estudiantes deben estar separados por un salto de linea.</p>
+                    <textarea class="form-control" placeholder="Ingrese los estudiantes..." rows="15" id='names'></textarea>
+                    <button  type="button" class="btn-primary botones" onclick="saveInfo(); return false" style="margin: 10px 0px 15px 0px;">Guardar</button>
+                </div>
+            </form>
         </div>
-    <!-- <input type="button" class="btn-primary botones" onclick="insertarEstudiante()" value="Nuevo Estudiante" style="margin: 20px"> -->
-         <div id="left-chevron-container" style="bottom: 0; position: fixed; height: 120px">
-            <a id="back-link" href="#" onclick="history.go(-1)">
-                <?php $_SESSION('last_page') = request_uri(); ?>
-                <i class="bi bi-chevron-left go-back-chevron-button" id="users-go-back"></i>
-            </a>
-
+        <div style="overflow:scroll;height:610px;margin-right:10px; margin-left: 10px;" class="section">
+            <div class="row">
+                <div class="col" style="margin: 20px; width: 80%">
+    
+                    <table id="tblDatos" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px; z-index:2;" class="table table-bordered table-hover align-middle"> 
+                    </table>
+    
+                    <table id="noEditable" style="border:1px solid #4a0cb6; border-radius: 20px; margin-right: 20px; z-index:2;" class="table table-bordered table-hover align-middle"> 
+                    </table>
+                </div>
+            
+            </div>
         </div>
-    </div>
-
-    <script>
-        var id = document.getElementById("ID").innerHTML;
-        function edit() {
-            var checkBox = document.getElementById("btncheck1");
-            var btnStuden = document.getElementById("addStudents");
-            var btnNote = document.getElementById("newNote");
-            let editnote = document.getElementById("note");
-            var able = document.getElementById("tblDatos");
-            if (checkBox.checked == true){
-                btnStuden.style.display = "inline";
-                if (btnNote){
-                    btnNote.style.display = "flex";
-                    btnNote.style.margin = "0px";
-                }
-                if (editnote){
-                    editnote.disabled = false;
-                }
-                editable()
-
-            } else {
-                btnStuden.style.display = "none";
-                nonEditable();
-                if(estudiantes.length>0){
-                    saveNameNotes();
-                    saveNotes();
-                    updateFinalGrade();
-                }
-
-                var token = getCookie('csrftoken');
-
-                var request = new XMLHttpRequest();
-                request.open('POST', "/courses/spreadsheet/"+id+"/");
-
-                const header = "X-CSRFToken";
-
-                request.setRequestHeader(header, token);
-
-                const dataEst = new FormData();
-                dataEst.append('estudiantes', JSON.stringify(estudiantes));
-                dataEst.append('tipo_notas', JSON.stringify(tipo_notas));
-
-                request.send(dataEst);
-
-
-                if (btnNote){
-                    btnNote.style.display = "none";
-                }
-                if (editnote){
-                    editnote.disabled = true;
-                }
-
-
-            }
-        }
-        function getCookie(name) {
-
-            var cookieValue = null;
-            if (document.cookie && document.cookie != '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = jQuery.trim(cookies[i]);
-                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            //RETORNANDO EL TOKEN
-            return cookieValue;
-        }
-
-        function highLightFinalGrade(){
-            var checkBox1 = document.getElementById("btncheck2");
-            if (checkBox1.checked == true){
-                highLight();
-            }
-            else{
-                nohighLight();
-            }
-        }
-
-        var myArray = new Array()
-        var numNotes = 1;
-
-        function openForm() {
-            document.getElementById("id01").style.display = "block";
-        }
-
-        function closeForm() {
-            document.getElementById("id01").style.display = "none";
-        }
-
-        var estudiantes = [];
-        var tipo_notas = [];
-
-        saveInfo = () => {
-            closeForm();
-            const names = document.getElementById('names').value;
-            myArray = names.split(/\r?\n/);
-            for (var i = 0; i < myArray.length; i++) {
-                text = myArray[i].split("-")
-                var temp = {}
-                try{
-                    temp["nombre"] = text[0].trim()
-                    temp["di"] = text[1].trim()
-                    temp["notas"] = [0]
-                    temp["definitiva"] = 0
-                    estudiantes.push(temp)
-                    document.getElementById("id01").style.display = "none";
-                    if (myArray.length !== 0) {
-                        const todosTemplate = estudiantes.map(t =>
-                                '<tr>'+
-                                    '<td>' + t["nombre"] + '</td>' +
-                                    '<td>' + t["definitiva"] + '</td>' +
-                                '</tr>')
-                        tblDatos.innerHTML = (
+    
+        <script>
+            var id = document.getElementById("ID").innerHTML;
+            var estudiantes = document.getElementById("estudiantes").innerHTML;
+            var tipo_notas = document.getElementById("tipo_notas").innerHTML;
+            var asignatura = document.getElementById("asignatura").innerHTML;
+            estudiantes = JSON.parse(estudiantes.replace(/'/g, '"'))
+            tipo_notas = JSON.parse(tipo_notas.replace(/'/g, '"'))
+            asignatura = JSON.parse(asignatura.replace(/'/g, '"'))
+            var notaMin = asignatura["min"];
+            var notaMax = asignatura["max"]
+    
+            function main(){
+                if (Object.entries(estudiantes).length !== 0) {
+                    const todosTemplate = estudiantes.map(t =>
                             '<tr>'+
-                            '<th>'+
-                                '<div class="col text-end" style="margin: 0px; width: 70%;">'+
-                                    '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
-                                '</div>'+
+                                '<td>' + t["nombre"] + '</td>' +
+                                '<td>' + t["definitiva"] + '</td>' +
+                            '</tr>')
+                    tblDatos.innerHTML = (
+                        '<tr>'+
+                        '<th>'+
+                            '<div class="col text-end" style="margin: 0px; width: 70%;">'+
+                                '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px; display: none;" >'+
+                            '</div>'+
+                        '</th>'+
+                        '<th>'+
+                            "Definitiva"+
+                        '</th>'+
+                        '</tr>'+
+                        '<tr>'+
+                            '<th onclick="sortTable(0)" style="cursor: pointer">'+
+                                "Nombre"+
                             '</th>'+
                             '<th>'+
-                                "Definitiva"+
+                                "100%"+
                             '</th>'+
-                            '</tr>'+
-                            '<tr>'+
-                                '<th onclick="sortTable(0)" style="cursor: pointer">'+
-                                    "Nombre"+
-                                '</th>'+
-                                '<th>'+
-                                    "100%"+
-                                '</th>'+
-                            '</tr>'
-                        + todosTemplate.join(''));
-                    }
-                }
-                catch(error){
-                    window.alert("RECUERDA QUE EL FORMATO PARA INGRESAR ES:\n 'Nombre' - 'documento de identidad'");
-                }
-            }            
-        }
+                        '</tr>'
+                    + todosTemplate.join(''));
 
+                    var table = document.getElementById ('tblDatos');
 
-        function insertarEstudiante() {
-            var table = document.getElementById('tblDatos').insertRow(-1);
+                    var rows = table.rows.length;
+                    var cols = document.getElementById('tblDatos').rows[2].cells.length;
 
-            var col1 = table.insertCell(0);
-            col1.innerHTML = '<div contenteditable><input placeholder="Estudiante"></div>';
+                    var firstRow = table.rows[0];
+                    var SecRow = table.rows[1];
 
-            var cols = document.getElementById('tblDatos').rows[2].cells.length;
-
-            for (var i = 0; i < cols-2; i++)
-            {
-                let coln = table.insertCell(1);
-                coln.innerHTML = '<div contenteditable><input placeholder="Nota"></div>';
-            }
-
-            var col3 = table.insertCell(-1);
-            col3.innerHTML = '<div contenteditable><input placeholder="Definitiva"></div>';
-        }
-
-        function insertarNota() {
-            var table = document.getElementById ('tblDatos');
-
-            var rows = table.rows.length;
-            var cols = document.getElementById('tblDatos').rows[2].cells.length;
-
-            var firstRow = table.rows[0];
-            var SecRow = table.rows[1];
-
-            var cell1 = firstRow.insertCell (cols-1);
-            var cell2 = SecRow.insertCell (cols-1);
-
-            for (var i = 0; i < rows-2; i++)
-            {
-                const tmp = "Nota " + numNotes;
-                cell1.innerHTML = '<input type="text" id="noteName" placeholder="Nombre Nota" style="width: 200px;">';
-                //cell2.innerHTML = '50%';
-
-                var LstRow = table.rows[i+2];
-
-                var celln = LstRow.insertCell (cols-1);
-
-                const nota = "Nota" + i;
-
-                celln.innerHTML = '<input type="text" id="note" placeholder=Nota style="width: 70px;"  maxlength="3">';
-            }
-            numNotes++
-        }
-
-        function saveNameNotes(){
-
-            var table = document.getElementById ('tblDatos');
-
-            var rows = table.rows.length;
-
-            for (var i = 1; i < numNotes; i++)
-            {
-                var type_Note = table.rows[0].cells[i].children[0].value;
-                tipo_notas.push(type_Note);
-            }
-        }
-
-        function saveNotes(){
-
-            var table = document.getElementById ('tblDatos');
-
-            var rows = table.rows.length;
-            var cols = document.getElementById('tblDatos').rows[2].cells.length;
-            
-            
-            for(var i = 2; i < rows; i++){
-                var tempName = table.rows[i].children[0].innerHTML;
-                var notas = [];
-                for(var j = 1; j < cols-1; j++){
-                    var nota = table.rows[i].cells[j].children[0].value;
-                    notas.push(nota);
-                }
-                console.log(notas)
-                var def = calculateFinalGrade(notas);
-                
-                for(var t = 0; t<estudiantes.length; t++){
-                    if (estudiantes[t]["nombre"] == tempName){
-                        estudiantes[t]["notas"] = notas;
-                        estudiantes[t]["definitiva"] = def;
-                    }
-                }              
-            }
-
-        }
-
-        function calculateFinalGrade(notas){
-
-            var sum = 0
-            
-            for(var t = 0; t<notas.length; t++){
-                sum+= parseFloat(notas[t])
-            }    
-
-            return sum/notas.length;
-
-        }
-
-        function nonEditable(){
-
-            if (estudiantes.length > 0){
-                var table = document.getElementById ('tblDatos');
-
-                var rows = table.rows.length;
-                var cols = document.getElementById('tblDatos').rows[2].cells.length;
-                
-                for (var i = 1; i < numNotes; i++)
-                {
-                    if(table.rows[0].cells[i].children[0].value == ""){
-                        table.rows[0].cells[i].children[0].value = "Nota " + i;
-                    }
-                    table.rows[0].cells[i].children[0].setAttribute("readonly", "true"); 
-                }         
-
-                for(var i = 2; i < rows; i++){
-                    for(var j = 1; j < cols-1; j++){
-                        if(table.rows[i].cells[j].children[0].value == ""){
-                            table.rows[i].cells[j].children[0].value = 0;
+                    for (var i = 0; i < tipo_notas.length; i++)
+                    {
+                        var cell1 = firstRow.insertCell(i+1);
+                        var cell2 = SecRow.insertCell (i+1);
+                        cell1.innerHTML = '<input type="text" id="noteName" placeholder="Nombre Nota" style="width: 200px;">';
+                        for (var j = 0; j < estudiantes.length; j++)
+                        {
+                            var LstRow = table.rows[j+2];
+                            var celln = LstRow.insertCell(i+1);
+                            celln.innerHTML = '<input type="text" id="note" placeholder=Nota style="width: 70px;"  maxlength="3">';   
                         }
-                        table.rows[i].cells[j].children[0].setAttribute("readonly", "true");
-                    }        
-                }
-            }
-        }
-
-        function updateFinalGrade(){
-
-            var table = document.getElementById ('tblDatos');
-
-            var rows = table.rows.length;
-            var cols = document.getElementById('tblDatos').rows[2].cells.length;
-            
-            
-            for(var i = 2; i < rows; i++){ 
-
-                var tempName = table.rows[i].children[0].innerHTML;
-                for(var t = 0; t<estudiantes.length; t++){
-                    if (estudiantes[t]["nombre"] == tempName){
-                        table.rows[i].cells[cols-1].innerHTML = estudiantes[t]["definitiva"]
                     }
-                }          
-            }
 
-        }
-
-        function editable(){
-
-            if (estudiantes.length > 0){
-                var table = document.getElementById ('tblDatos');
-
-                var rows = table.rows.length;
-                var cols = document.getElementById('tblDatos').rows[2].cells.length;
-                
-                
-                for (var i = 1; i < numNotes; i++)
-                {
-                    table.rows[0].cells[i].children[0].removeAttribute("readonly") 
-                }
+                if (estudiantes.length > 0){
                         
-
-                for(var i = 2; i < rows; i++){
-                    for(var j = 1; j < cols-1; j++){
-                        table.rows[i].cells[j].children[0].removeAttribute("readonly");
-                    }            
-                }
-            }
-
-            
-        }
-
-        function highLight(){
-            var table = document.getElementById ('tblDatos');
-
-            var rows = table.rows.length;
-            var cols = document.getElementById('tblDatos').rows[2].cells.length;
-            
-            
-            for(var i = 2; i < rows; i++){ 
-
-                if (table.rows[i].cells[cols-1].innerHTML < 3){
-                    table.rows[i].cells[cols-1].style.color = "black";
-                    table.rows[i].cells[cols-1].style.backgroundColor = "#F6A7A7";
+                        for (var i = 1; i < tipo_notas.length+1; i++)
+                        {
+                            if(table.rows[0].cells[i].children[0].value == ""){
+                                table.rows[0].cells[i].children[0].value = tipo_notas[i-1];
+                            }
+                            table.rows[0].cells[i].children[0].setAttribute("readonly", "true"); 
+                        }         
+                        var cont = 0;
+                        for(var i = 2; i < estudiantes.length+2; i++){
+                            for(var j = 1; j < tipo_notas.length+1; j++){
+                                if(table.rows[i].cells[j].children[0].value == ""){
+                                    table.rows[i].cells[j].children[0].value = estudiantes[cont]["notas"][j-1];
+                                }
+                                table.rows[i].cells[j].children[0].setAttribute("readonly", "true");
+                            }   
+                            cont++     
+                        }
+                    } 
                 }
                 else{
-                    table.rows[i].cells[cols-1].style.color = "black";
-                    table.rows[i].cells[cols-1].style.backgroundColor = "#CBF6A7";
-                }       
-            }
-        }
-
-        function nohighLight(){
-            var table = document.getElementById ('tblDatos');
-
-            var rows = table.rows.length;
-            var cols = document.getElementById('tblDatos').rows[2].cells.length;
-            
-            
-            for(var i = 2; i < rows; i++){ 
-
-                var tempName = table.rows[i].children[0].innerHTML;
-                for(var t = 0; t<estudiantes.length; t++){
-                    if (estudiantes[t]["nombre"] == tempName){
-                        table.rows[i].cells[cols-1].style.color = "black";
-                        table.rows[i].cells[cols-1].style.backgroundColor = "white"; 
-                    }
-                }          
-            }
-        }
-
-
-
-        function sortTable(n) {
-                  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-                  table = document.getElementById("tblDatos");
-
-                  switching = true;
-
-                  dir = "asc";
-
-                  while (switching) {
-
-                        switching = false;
-                        rows = table.rows;
-
-                        for (i = 2; i < (rows.length - 1); i++) {
-
-                          x = rows[i].getElementsByTagName("TD")[n];
-                          y = rows[i + 1].getElementsByTagName("TD")[n];
-
-                          if (dir == "asc") {
-                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-
-                              shouldSwitch = true;
-                              break;
-                            }
-                          } else if (dir == "desc") {
-                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-
-                              shouldSwitch = true;
-                              break;
-                            }
-                          }
-                        }
-                        if (shouldSwitch) {
-
-                          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                          switching = true;
-
-                          switchcount ++;
-                        } else {
-
-                          if (switchcount == 0 && dir == "asc") {
-                            dir = "desc";
-                            switching = true;
-                          }
-                        }
-                      }
+                    estudiantes = []
                 }
-    </script>
-</div>
+                
+
+                console.log("Estoy vivo putoo")
+            }
+    
+            function edit() {
+                var checkBox = document.getElementById("btncheck1");
+                var btnStuden = document.getElementById("addStudents");
+                var btnNote = document.getElementById("newNote");
+                let editnote = document.getElementById("note");
+                var able = document.getElementById("tblDatos");
+                if (checkBox.checked == true){
+                    btnStuden.style.display = "inline";
+                    if (btnNote){
+                        btnNote.style.display = "flex";
+                        btnNote.style.margin = "0px";
+                    }
+                    if (editnote){
+                        editnote.disabled = false;
+                    }
+                    editable()
+    
+                } else {
+                    btnStuden.style.display = "none";
+                    nonEditable();
+                    if(estudiantes.length>0){
+                        saveNameNotes();
+                        saveNotes();
+                        updateFinalGrade();
+                    }
+    
+                    var token = getCookie('csrftoken');
+    
+                    var request = new XMLHttpRequest();
+                    request.open('POST', "/courses/spreadsheet/"+id+"/");
+    
+                    const header = "X-CSRFToken";
+    
+                    request.setRequestHeader(header, token);
+    
+                    const dataEst = new FormData();
+                    dataEst.append('estudiantes', JSON.stringify(estudiantes));
+                    dataEst.append('tipo_notas', JSON.stringify(tipo_notas));
+    
+                    request.send(dataEst);
+    
+    
+                    if (btnNote){
+                        btnNote.style.display = "none";
+                    }
+                    if (editnote){
+                        editnote.disabled = true;
+                    }
+    
+    
+                }
+            }
+            function getCookie(name) {
+    
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                //RETORNANDO EL TOKEN
+                return cookieValue;
+            }
+    
+            function highLightFinalGrade(){
+                var checkBox1 = document.getElementById("btncheck2");
+                if (checkBox1.checked == true){
+                    highLight();
+                }
+                else{
+                    nohighLight();
+                }
+            }
+    
+            var myArray = new Array()
+            var numNotes = 0;
+    
+            function openForm() {
+                document.getElementById("id01").style.display = "block";
+            }
+    
+            function closeForm() {
+                document.getElementById("id01").style.display = "none";
+            }
+    
+            saveInfo = () => {
+                closeForm();
+                
+                if(Object.entries(estudiantes).length === 0){
+                    const names = document.getElementById('names').value;
+                    myArray = names.split(/\r?\n/);
+                    for (var i = 0; i < myArray.length; i++) {
+                        text = myArray[i].split("-")
+                        var temp = {}
+                        try{
+                            temp["nombre"] = text[0].trim()
+                            temp["di"] = text[1].trim()
+                            temp["notas"] = [0]
+                            temp["definitiva"] = 0
+                            estudiantes.push(temp)
+                            document.getElementById("id01").style.display = "none";
+                            if (myArray.length !== 0) {
+                                const todosTemplate = estudiantes.map(t =>
+                                        '<tr>'+
+                                            '<td>' + t["nombre"] + '</td>' +
+                                            '<td>' + t["definitiva"] + '</td>' +
+                                        '</tr>')
+                                tblDatos.innerHTML = (
+                                    '<tr>'+
+                                    '<th>'+
+                                        '<div class="col text-end" style="margin: 0px; width: 70%;">'+
+                                            '<input type="button" class="btn-primary botones" id="newNote" onclick="insertarNota()" value="Nueva Nota" style="width:auto; margin: 0px; display: flex; justify-content: center; align-items: center; padding: 0px 20px 0px 20px;" >'+
+                                        '</div>'+
+                                    '</th>'+
+                                    '<th>'+
+                                        "Definitiva"+
+                                    '</th>'+
+                                    '</tr>'+
+                                    '<tr>'+
+                                        '<th onclick="sortTable(0)" style="cursor: pointer">'+
+                                            "Nombre"+
+                                        '</th>'+
+                                        '<th>'+
+                                            "100%"+
+                                        '</th>'+
+                                    '</tr>'
+                                + todosTemplate.join(''));
+                            }
+                        }
+                        catch(error){
+                            window.alert("RECUERDA QUE EL FORMATO PARA INGRESAR ES:\n 'Nombre' - 'documento de identidad'");
+                            console.log(error)
+                        }
+                    } 
+                }
+                else{
+                    const names = document.getElementById('names').value;
+                    myArray = names.split(/\r?\n/);
+                    console.log(myArray)
+                    var c = myArray.length
+                    console.log(myArray.length)
+                    for (var i = 0; i < c; i++) {
+                        console.log(i)
+                        text = myArray[i].split("-")
+                        var temp = {}
+                        try{
+                            temp["nombre"] = text[0].trim()
+                            temp["di"] = text[1].trim()
+                            temp["notas"] = [0]
+                            temp["definitiva"] = 0
+                            console.log(temp)
+                            estudiantes.push(temp)
+                            
+                            var table = document.getElementById('tblDatos').insertRow(-1);
+            
+                            var col1 = table.insertCell(0);
+                            col1.innerHTML = temp["nombre"];
+                
+                            var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                
+                            for (var x = 0; x < cols-2; x++)
+                            {
+                                let coln = table.insertCell(1);
+                                coln.innerHTML = '<input type="text" id="note" placeholder=Nota style="width: 70px;"  maxlength="3">';
+                            }
+                
+                            var col3 = table.insertCell(-1);
+                            col3.innerHTML = temp["definitiva"];
+                        }catch(error){
+                            window.alert("RECUERDA QUE EL FORMATO PARA INGRESAR ES:\n 'Nombre' - 'documento de identidad'");
+                            console.log(error)
+                        }
+                    }
+                    document.getElementById("id01").style.display = "none";
+                }
+                document.getElementById('names').value = ""
+            }
+    
+    
+            function insertarEstudiante() {
+                var table = document.getElementById('tblDatos').insertRow(-1);
+    
+                var col1 = table.insertCell(0);
+                col1.innerHTML = '<div contenteditable><input placeholder="Estudiante"></div>';
+    
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+    
+                for (var i = 0; i < cols-2; i++)
+                {
+                    let coln = table.insertCell(1);
+                    coln.innerHTML = '<div contenteditable><input placeholder="Nota"></div>';
+                }
+    
+                var col3 = table.insertCell(-1);
+                col3.innerHTML = '<div contenteditable><input placeholder="Definitiva"></div>';
+            }
+    
+            function insertarNota() {
+                var table = document.getElementById ('tblDatos');
+    
+                var rows = table.rows.length;
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+    
+                var firstRow = table.rows[0];
+                var SecRow = table.rows[1];
+    
+                var cell1 = firstRow.insertCell (cols-1);
+                var cell2 = SecRow.insertCell (cols-1);
+    
+                for (var i = 0; i < rows-2; i++)
+                {
+                    cell1.innerHTML = '<input type="text" id="noteName" placeholder="Nombre Nota" style="width: 200px;">';
+                    //cell2.innerHTML = '50%';
+    
+                    var LstRow = table.rows[i+2];
+    
+                    var celln = LstRow.insertCell (cols-1);
+    
+                    const nota = "Nota" + i;
+    
+                    celln.innerHTML = '<input type="text" id="note" placeholder=Nota style="width: 70px;"  maxlength="3">';
+                }
+                numNotes++
+            }
+    
+            function saveNameNotes(){
+    
+                var table = document.getElementById ('tblDatos');
+    
+                var rows = table.rows.length;
+                
+                var c = tipo_notas.length+numNotes+1
+
+                tipo_notas = []
+
+                var x = 1;
+                while (x < c){
+                    var type_Note = table.rows[0].cells[x].children[0].value;
+                    tipo_notas.push(type_Note);
+                    x++;
+                }
+            }
+    
+            function saveNotes(){
+    
+                var table = document.getElementById ('tblDatos');
+    
+                var rows = table.rows.length;
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                
+                
+                for(var i = 2; i < rows; i++){
+                    var tempName = table.rows[i].children[0].innerHTML;
+                    var notas = [];
+                    for(var j = 1; j < cols-1; j++){
+                        var nota = table.rows[i].cells[j].children[0].value;
+                        notas.push(nota);
+                    }
+                    var def = calculateFinalGrade(notas);
+
+                    
+                    for(var t = 0; t<estudiantes.length; t++){
+                        if (estudiantes[t]["nombre"] == tempName){
+                            estudiantes[t]["notas"] = notas;
+                            estudiantes[t]["definitiva"] = def;
+                        }
+                    }              
+                }
+
+                console.log(estudiantes);
+    
+            }
+    
+            function calculateFinalGrade(notas){
+    
+                if (notas.length == 0){
+                    return 0;
+                }
+                else{
+                    var sum = 0
+                
+                    for(var t = 0; t<notas.length; t++){
+                        sum+= parseFloat(notas[t])
+                    }    
+        
+                    return sum/notas.length;
+                }
+    
+            }
+    
+            function nonEditable(){
+    
+                if (estudiantes.length > 0){
+                    var table = document.getElementById ('tblDatos');
+    
+                    var rows = table.rows.length;
+                    var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                    
+                    for (var i = 1; i < tipo_notas.length+numNotes+1; i++)
+                    {
+                        if(table.rows[0].cells[i].children[0].value == ""){
+                            table.rows[0].cells[i].children[0].value = "Nota " + i;
+                        }
+                        table.rows[0].cells[i].children[0].setAttribute("readonly", "true"); 
+                    }         
+    
+                    for(var i = 2; i < rows; i++){
+                        for(var j = 1; j < cols-1; j++){
+                            if(table.rows[i].cells[j].children[0].value == ""){
+                                table.rows[i].cells[j].children[0].value = 0;
+                            }
+                            table.rows[i].cells[j].children[0].setAttribute("readonly", "true");
+                        }        
+                    }
+                }
+            }
+    
+            function updateFinalGrade(){
+    
+                var table = document.getElementById ('tblDatos');
+    
+                var rows = table.rows.length;
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                
+                
+                for(var i = 2; i < rows; i++){ 
+    
+                    var tempName = table.rows[i].children[0].innerHTML;
+                    for(var t = 0; t<estudiantes.length; t++){
+                        if (estudiantes[t]["nombre"] == tempName){
+                            table.rows[i].cells[cols-1].innerHTML = estudiantes[t]["definitiva"]
+                        }
+                    }          
+                }
+    
+            }
+    
+            function editable(){
+    
+                if (estudiantes.length > 0){
+                    var table = document.getElementById ('tblDatos');
+    
+                    var rows = table.rows.length;
+                    var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                    
+                    
+                    for (var i = 1; i < numNotes+1+tipo_notas.length; i++)
+                    {
+                        table.rows[0].cells[i].children[0].removeAttribute("readonly") 
+                    }
+                            
+    
+                    for(var i = 2; i < rows; i++){
+                        for(var j = 1; j < cols-1; j++){
+                            table.rows[i].cells[j].children[0].removeAttribute("readonly");
+                        }            
+                    }
+                }
+    
+                
+            }
+    
+            function highLight(){
+                var table = document.getElementById ('tblDatos');
+    
+                var rows = table.rows.length;
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                
+                
+                for(var i = 2; i < rows; i++){ 
+    
+                    if (table.rows[i].cells[cols-1].innerHTML < notaMin){
+                        table.rows[i].cells[cols-1].style.color = "black";
+                        table.rows[i].cells[cols-1].style.backgroundColor = "#F6A7A7";
+                    }
+                    else if(table.rows[i].cells[cols-1].innerHTML > notaMax){
+                        table.rows[i].cells[cols-1].style.color = "black";
+                        table.rows[i].cells[cols-1].style.backgroundColor = "#A7BAF6";
+                    }
+                    else{
+                        table.rows[i].cells[cols-1].style.color = "black";
+                        table.rows[i].cells[cols-1].style.backgroundColor = "#CBF6A7";
+                    }       
+                }
+            }
+    
+            function nohighLight(){
+                var table = document.getElementById ('tblDatos');
+    
+                var rows = table.rows.length;
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
+                
+                
+                for(var i = 2; i < rows; i++){ 
+    
+                    var tempName = table.rows[i].children[0].innerHTML;
+                    for(var t = 0; t<estudiantes.length; t++){
+                        if (estudiantes[t]["nombre"] == tempName){
+                            table.rows[i].cells[cols-1].style.color = "black";
+                            table.rows[i].cells[cols-1].style.backgroundColor = "white"; 
+                        }
+                    }          
+                }
+            }
+    
+    
+    
+            function sortTable(n) {
+                      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                      table = document.getElementById("tblDatos");
+    
+                      switching = true;
+    
+                      dir = "asc";
+    
+                      while (switching) {
+    
+                            switching = false;
+                            rows = table.rows;
+    
+                            for (i = 2; i < (rows.length - 1); i++) {
+    
+                              x = rows[i].getElementsByTagName("TD")[n];
+                              y = rows[i + 1].getElementsByTagName("TD")[n];
+    
+                              if (dir == "asc") {
+                                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+    
+                                  shouldSwitch = true;
+                                  break;
+                                }
+                              } else if (dir == "desc") {
+                                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+    
+                                  shouldSwitch = true;
+                                  break;
+                                }
+                              }
+                            }
+                            if (shouldSwitch) {
+    
+                              rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                              switching = true;
+    
+                              switchcount ++;
+                            } else {
+    
+                              if (switchcount == 0 && dir == "asc") {
+                                dir = "desc";
+                                switching = true;
+                              }
+                            }
+                          }
+                    }
+        </script>
+    </div>
+</body>
 {% endblock %}
