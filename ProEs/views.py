@@ -29,6 +29,7 @@ def LoginStudents(request):
                 if j["di"] ==di:
                     aux=j
             salidaArr[i]["estudiantes"] = aux
+            print(salidaArr)
         return render(request,'ProEs/notes.html',{"contexto":salidaArr})    
     return render(request,'ProEs/login_students.html')
 

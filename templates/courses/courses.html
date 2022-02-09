@@ -4,7 +4,7 @@
 <title>ProEs | Courses</title>
 {% endblock %}
 {% block white_base %}
-<header style="max-height: 100px; padding: 20px">
+<header style="padding: 20px">
     <div style="float: left; clear: both; text-align: center">
         <h1 id="form-title" style="margin: 18px">Bienvenido, estas son tus asignaturas</h1>
     </div>
@@ -33,17 +33,21 @@ margin: 20px auto 0 auto;"></div>
 <div class="row">
     {%for materia in contexto%}
     <!--                Empieza la carta-->
-    <div class="col-12 col-md-3">
+    <div class="col-6 col-md-3">
 
         <div class="card border-success mb-3 border-color"
              style="max-width: 18rem; border-radius: 21px; border-color: black;">
             <div class="card-header border-success"
                  style="border-radius: 21px 21px 0px 0px;; background-color: #5112d9; overflow: visible ;color: #ffffff; font-family: sans-serif;">
                 <div class="row">
-                    <div class="col-12 col-lg-3">
-                        <i class="bi bi-filetype-pdf"></i>
+                    <div class="col col-lg-3">
+                        <a href="{% url 'spreadsheet' materia.id%}">
+                            <h3>
+                                <i class="bi bi-file-pdf"></i>
+                            </h3>
+                        </a>
                     </div>
-                    <div class="col-12 col-lg-7">
+                    <div class="col-lg-7">
                         <a href="{% url 'spreadsheet' materia.id%}">
                             <button type="button" class="btn"
                                     style="background-color: #5112d9; border-color: #5112d9;">
@@ -54,8 +58,8 @@ margin: 20px auto 0 auto;"></div>
                     </div>
                     <div class="col-12 col-lg-2">
                         <a data-bs-toggle="modal" data-bs-target="#{{materia.asignatura.nombre}}" class="btn"
-                           style="background-color: #5112d9; border-color: #5112d9; color: white;"><i
-                                class="bi bi-three-dots-vertical"></i></a>
+                           style="background-color: #5112d9; border-color: #5112d9; color: white;">
+                            <i class="bi bi-three-dots-vertical"></i></a>
                     </div>
                 </div>
             </div>
