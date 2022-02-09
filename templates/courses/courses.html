@@ -1,7 +1,7 @@
 {% extends 'common/white_base.html' %}
 {% load static %}
 {% block  head_content %}
-    <title>ProEs | Courses</title>
+<title>ProEs | Courses</title>
 {% endblock %}
 {% block white_base %}
 <header style="max-height: 100px; padding: 20px">
@@ -23,7 +23,6 @@
         </div>
 
     </div>
-
 </header>
 <div></div>
 <div class="linea" style="border-top: 1px solid black;
@@ -31,88 +30,84 @@ height: 2px;
 max-width: 2000px;
 padding: 0;
 margin: 20px auto 0 auto;"></div>
-    <div class="row">
-        <div class="row">
-            {%for materia in contexto%}
-            <!--                Empieza la carta-->
-            <div class="col-12 col-md-3">
+<div class="row">
+    {%for materia in contexto%}
+    <!--                Empieza la carta-->
+    <div class="col-12 col-md-3">
 
-                    <div class="card border-success mb-3 border-color"
-                         style="max-width: 18rem; border-radius: 21px; border-color: black;">
-                        <div class="card-header border-success"
-                             style="border-radius: 21px 21px 0px 0px;; background-color: #5112d9; overflow: visible ;color: #ffffff; font-family: sans-serif;">
-                            <div class="row">
-                                <div class="col-12 col-lg-9">
-                                    <a href="{% url 'spreadsheet' materia.id%}">
-                                        <button type="button" class="btn"
-                                            style="background-color: #5112d9; border-color: #5112d9;">
-                                        <h6 style="color: white; font-family: 'Inter', sans-serif">{{materia.asignatura.nombre}}</h6>
-                                    </button>
-                                    </a>
-                                </div>
-                                <div class="col-12 col-lg-3">
-                                    <a data-bs-toggle="modal" data-bs-target="#modificarasignatura" class="btn" style="background-color: #5112d9; border-color: #5112d9; color: white;"><i class="bi bi-three-dots-vertical"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body text-success">
-                            <div class="d-grid gap-2">
-                                <a href="/courses/topbest">
-                                    <button type="button" class="btn btn-dark">Generar top 3 mejores estudiantes</button>
-                                </a>
-                                <a href="/courses/topworst">
-                                    <button type="button" class="btn btn-dark">Generar top 3 peores estudiantes</button>
-                                </a>
-                            </div>
-                        </div>
+        <div class="card border-success mb-3 border-color"
+             style="max-width: 18rem; border-radius: 21px; border-color: black;">
+            <div class="card-header border-success"
+                 style="border-radius: 21px 21px 0px 0px;; background-color: #5112d9; overflow: visible ;color: #ffffff; font-family: sans-serif;">
+                <div class="row">
+                    <div class="col-12 col-lg-9">
+                        <a href="{% url 'spreadsheet' materia.id%}">
+                            <button type="button" class="btn"
+                                    style="background-color: #5112d9; border-color: #5112d9;">
+                                <h6 style="color: white; font-family: 'Inter', sans-serif">
+                                    {{materia.asignatura.nombre}}</h6>
+                            </button>
+                        </a>
                     </div>
+                    <div class="col-12 col-lg-3">
+                        <a data-bs-toggle="modal" data-bs-target="#{{materia.asignatura.nombre}}" class="btn"
+                           style="background-color: #5112d9; border-color: #5112d9; color: white;"><i
+                                class="bi bi-three-dots-vertical"></i></a>
+                    </div>
+                </div>
             </div>
-            <!--                Finaliza carta-->
-            {%endfor%}
-            <div class="col-12 col-md-3">
-                
-            </div>
-            <div class="col-12 col-md-3">
-                
-            </div>
-            <div class="col-12 col-md-3">
-                
+            <div class="card-body text-success">
+                <div class="d-grid gap-2">
+                    <a href="/courses/topbest">
+                        <button type="button" class="btn btn-dark">Generar top 3 mejores estudiantes</button>
+                    </a>
+                    <a href="/courses/topworst">
+                        <button type="button" class="btn btn-dark">Generar top 3 peores estudiantes</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container" style="padding: 20px">
-        <div class="col-12 col-lg-1 d-flex justify-content-end">
-            <div class="row justify-content-center align-items-center">
-                <a href="/courses/newcourse">
-                    <button type="button" class="btn btn-primary btn-circle btn-xl justify-content-center align-items-center"
-                            style="border-radius: 35px; width: 70px; height: 70px;background-color: #5112d9; border-color: #5112d9;">
-                        <h2 class="align-middle justify-content-center align-items-center"><i class="bi bi-plus-lg"></i></h2>
-                    </button>
-                </a>
+
+    <div class="modal fade" id="{{materia.asignatura.nombre}}" tabindex="-1" aria-labelledby="modificarasignatura"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label" style="font-family: 'Inter', sans-serif">Nombre
+                                asignatura: {{materia.asignatura.nombre}}</label>
+                            <input type="text" class="form-control" id="recipient-name" placeholder="Nombre asignatura">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button type="button" class="btn btn-dark">Eliminar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
+    {%endfor%}
 
-            <div class="modal fade" id="modificarasignatura" tabindex="-1" aria-labelledby="modificarasignatura" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                      <div class="modal-body">
-                        <form>
-                          <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label" style="font-family: 'Inter', sans-serif">Nombre asignatura:</label>
-                            <input type="text" class="form-control" id="recipient-name" placeholder="Nombre asignatura">
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <div class="d-grid gap-2 col-6 mx-auto">
-                            <button type="button" class="btn btn-dark">Eliminar</button>
-                            <button type="button" class="btn btn-primary">Guardar</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-    </footer>
-{% endblock %}
+</div>
+<div class="container" style="padding: 20px">
+    <div class="col-12 col-lg-1 d-flex justify-content-end">
+        <div class="row justify-content-center align-items-center">
+            <a href="/courses/newcourse">
+                <button type="button"
+                        class="btn btn-primary btn-circle btn-xl justify-content-center align-items-center"
+                        style="border-radius: 35px; width: 70px; height: 70px;background-color: #5112d9; border-color: #5112d9;">
+                    <h2 class="align-middle justify-content-center align-items-center"><i class="bi bi-plus-lg"></i>
+                    </h2>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+    {% endblock %}
