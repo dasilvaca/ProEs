@@ -20,9 +20,15 @@ def LoginStudents(request):
         di = request.POST["di"]
         db = connect("proesCol")
         query ={"estudiantes.di":di}
-        salida = db.find(query)
-        for i in salida:
-            salidaArr.append(i)
+        salida = db.find(query,{"_id":0})
+        for i in range(salida.count()):
+            salidaArr.append(salida[i])
+            estudiantesList = salida[i]["estudiantes"]
+            aux = {}
+            for j in estudiantesList:
+                if j["di"] ==di:
+                    aux=j
+            salidaArr[i]["estudiantes"] = aux
         return render(request,'ProEs/notes.html',{"contexto":salidaArr})    
     return render(request,'ProEs/login_students.html')
 
