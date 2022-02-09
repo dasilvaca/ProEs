@@ -15,8 +15,8 @@ def LoginStudents(request):
 
     if request.method == 'POST':
         di = request.POST["di"]
-
-    render(request,'ProEs/login_students.html')
+        print(di)
+    return render(request, 'ProEs/login_students.html')
 
 
 class Notes(TemplateView):
