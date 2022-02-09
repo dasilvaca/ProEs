@@ -57,8 +57,8 @@ def TopWorst(request, id):
     ordered = sorted(salida, key=lambda d: d['definitiva'])
     salidaArr=[]
     
-    if len(ordered)> 3:
-        salidaArr=[ordered[0],ordered[1],ordered[2]]
+    if len(ordered)>= 3:
+        salidaArr={"est1":ordered[0],"est2":ordered[1],"est3":ordered[2]}
     else:
         for i in range(len(ordered)):
             salidaArr.append(ordered[i])
@@ -75,8 +75,8 @@ def TopBest(request, id):
     ordered = sorted(salida, key=lambda d: d['definitiva'], reverse=True)
     salidaArr=[]
 
-    if len(ordered)> 3:
-        salidaArr=[ordered[0],ordered[1],ordered[2]]
+    if len(ordered)>= 3:
+        salidaArr={"est1":ordered[0],"est2":ordered[1],"est3":ordered[2]}
     else:
         for i in range(len(ordered)):
             salidaArr.append(ordered[i])

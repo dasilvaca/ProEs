@@ -65,10 +65,10 @@ margin: 20px auto 0 auto;"></div>
             </div>
             <div class="card-body text-success">
                 <div class="d-grid gap-2">
-                    <a href="/courses/topbest">
+                    <a href="{% url 'topbest' materia.id%}">
                         <button type="button" class="btn btn-dark">Generar top 3 mejores estudiantes</button>
                     </a>
-                    <a href="/courses/topworst">
+                    <a href="{% url 'topworst' materia.id%}">
                         <button type="button" class="btn btn-dark">Generar top 3 peores estudiantes</button>
                     </a>
                 </div>
