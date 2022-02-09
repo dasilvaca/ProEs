@@ -30,6 +30,7 @@ def LoginStudents(request):
                     aux=j
             salidaArr1[i]["estudiantes"] = aux
         salidaArr2 = []
+
         for i in range(len(salidaArr1)):
             general_dict={
                 "di":salidaArr1[i]["estudiantes"]["di"],
@@ -44,8 +45,9 @@ def LoginStudents(request):
                 })
             general_dict["notas"]=arrNotas
             general_dict["definitiva"]=salidaArr1[i]["estudiantes"]["definitiva"]
-            salidaArr2.append(general_dict)  
-        return render(request,'ProEs/notes.html',{"contexto":salidaArr2})    
+            salidaArr2.append(general_dict)
+        salidaArr2 = {"cedula" : di, "materias":salidaArr2}
+        return render(request,'ProEs/notes.html', {"contexto" : salidaArr2})
     return render(request,'ProEs/login_students.html')
 
 
