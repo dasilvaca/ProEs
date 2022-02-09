@@ -6,17 +6,25 @@ from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView, \
     PasswordResetView, PasswordResetConfirmView
 
+#Para conectar con atlas
+from utils import *
+from bson import ObjectId
 
 class Home(TemplateView):
     template_name = 'ProEs/home.html'
 
 
 def LoginStudents(request):
-
     if request.method == 'POST':
+        salidaArr = []
         di = request.POST["di"]
-        print(di)
-    return render(request, 'ProEs/login_students.html')
+        db = connect("proesCol")
+        query ={"estudiantes.di":di}
+        salida = db.find(query)
+        for i in salida:
+            salidaArr.append(i)
+        return render(request,'ProEs/notes.html',{"contexto":salidaArr})    
+    return render(request,'ProEs/login_students.html')
 
 
 class Notes(TemplateView):
