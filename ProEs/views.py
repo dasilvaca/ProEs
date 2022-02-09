@@ -15,16 +15,15 @@ class Home(TemplateView):
 
 
 def LoginStudents(request):
-
     if request.method == 'POST':
+        salidaArr = []
         di = request.POST["di"]
         db = connect("proesCol")
         query ={"estudiantes.di":di}
         salida = db.find(query)
-        import pdb; pdb.set_trace()
-
-
-
+        for i in salida:
+            salidaArr.append(i)
+        return render(request,'ProEs/notes.html',{"contexto":salidaArr})    
     return render(request,'ProEs/login_students.html')
 
 
