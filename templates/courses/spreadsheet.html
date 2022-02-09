@@ -458,13 +458,12 @@
                 var table = document.getElementById ('tblDatos');
     
                 var rows = table.rows.length;
-                
-                var c = tipo_notas.length+numNotes+1
+                var cols = document.getElementById('tblDatos').rows[2].cells.length;
 
                 tipo_notas = []
 
                 var x = 1;
-                while (x < c){
+                while (x < cols-1){
                     var type_Note = table.rows[0].cells[x].children[0].value;
                     tipo_notas.push(type_Note);
                     x++;
@@ -525,8 +524,9 @@
     
                     var rows = table.rows.length;
                     var cols = document.getElementById('tblDatos').rows[2].cells.length;
+
                     
-                    for (var i = 1; i < tipo_notas.length+numNotes+1; i++)
+                    for (var i = 1; i < cols-1; i++)
                     {
                         if(table.rows[0].cells[i].children[0].value == ""){
                             table.rows[0].cells[i].children[0].value = "Nota " + i;
@@ -574,7 +574,7 @@
                     var cols = document.getElementById('tblDatos').rows[2].cells.length;
                     
                     
-                    for (var i = 1; i < numNotes+1+tipo_notas.length; i++)
+                    for (var i = 1; i < cols-1; i++)
                     {
                         table.rows[0].cells[i].children[0].removeAttribute("readonly") 
                     }
