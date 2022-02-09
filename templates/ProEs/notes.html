@@ -41,12 +41,12 @@
                                         </tr>
                                     {% endfor %}
                                     {% if materia.definitiva < materia.asignatura.min%}
-                                        <tr class="table-danger">
+                                        <tr class="table-warning">
                                             <th scope="row">Definitiva</th>
                                             <td>{{materia.definitiva}}</td>
                                         </tr>
                                     {% else%}
-                                        <tr class="table-success">
+                                        <tr class="table-warning">
                                             <th scope="row">Definitiva</th>
                                             <td>{{materia.definitiva}}</td>
                                         </tr>
